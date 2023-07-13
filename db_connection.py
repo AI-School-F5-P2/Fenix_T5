@@ -17,8 +17,5 @@ class DataBaseConnection:
             self.conn.close()
             raise
 
-    # def __del__(self):
-    #     self.conn.close()
-
     def get_connection(self):
         return self.conn

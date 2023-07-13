@@ -1,9 +1,7 @@
 from fastapi import FastAPI
 from db_connection import DataBaseConnection
-from schema.clases_schema import ClasesSchema
+from schema.clases_schema import *
 from model.clases import Clases
-
-clase = 0
 
 app = FastAPI()
 conn = DataBaseConnection()
@@ -22,13 +20,22 @@ async def root():
     return items
 
 
-@app.post("/api/insert")
+@app.post("/insert")
 def insert(clase_data: ClasesSchema):
     data = clase_data.dict()
     data.pop("clase_id")
     clases_instance.insert(data)
+    return {"message": f"Registro añadido exitosamente"}
 
-@app.delete("/api/delete/{clase_id}")
+@app.delete("/delete/{clase_id}")
 def delete(clase_id: int):
     clases_instance.delete(clase_id)
+    return {"message": f"Registro con clase_id {clase_id} borrado exitosamente"}
+
+@app.put("/update/{clase_id}")
+def update(clase_id: int, updated_data: UpdateClasesSchema):
+    clases_instance.update(clase_id, updated_data)
+    return {"message": f"Registro con clase_id {clase_id} modificado exitosamente"}
+
+
 
