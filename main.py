@@ -9,6 +9,10 @@ clases_instance = Clases()
 
 @app.get("/")
 async def root():
+    """
+    Endpoint Read. Lee todos los resgistros de la tabla Clases
+    :return
+    """
     items = []
     for data in clases_instance.read_all_clases():
         dictionary = {}
@@ -22,6 +26,11 @@ async def root():
 
 @app.post("/insert")
 def insert(clase_data: ClasesSchema):
+    """
+    Endpoint Create. Crea un registro en la tabla Clases
+    :param clase_data:
+    :return:
+    """
     data = clase_data.dict()
     data.pop("clase_id")
     clases_instance.insert(data)
@@ -29,11 +38,22 @@ def insert(clase_data: ClasesSchema):
 
 @app.delete("/delete/{clase_id}")
 def delete(clase_id: int):
+    """
+    Endpoint Delete. Borra el registro específico de la tabla Clase
+    :param clase_id:
+    :return:
+    """
     clases_instance.delete(clase_id)
     return {"message": f"Registro con clase_id {clase_id} borrado exitosamente"}
 
 @app.put("/update/{clase_id}")
 def update(clase_id: int, updated_data: UpdateClasesSchema):
+    """
+    Endpoint Update. Actualiza un registro específico de la tabla Clase
+    :param clase_id:
+    :param updated_data:
+    :return:
+    """
     clases_instance.update(clase_id, updated_data)
     return {"message": f"Registro con clase_id {clase_id} modificado exitosamente"}
 

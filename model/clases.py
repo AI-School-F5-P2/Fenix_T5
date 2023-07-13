@@ -6,12 +6,21 @@ class Clases():
         self.conn = DataBaseConnection().get_connection()  # Obtiene la conexión de la clase DataBaseConnection
 
     def read_all_clases(self):
+        """
+        CRUD READ. Lee todos los registros de la tabla Clases
+        :return:
+        """
         with self.conn.cursor() as cur:
             cur.execute("""SELECT * FROM "Clases" """)
             data = cur.fetchall()
             return data
 
     def insert(self, data):
+        """
+        CRUD CREATE. Inserta un registro en la tabla Clases
+        :param data:
+        :return:
+        """
         with self.conn.cursor() as cur:
             cur.execute("""
                 INSERT INTO "Clases"(nombre_clase, nivel_clase, precio_clase) 
@@ -20,6 +29,11 @@ class Clases():
             self.conn.commit()
 
     def delete(self, clase_id: int):
+        """
+        CRUD DELETE. Borra un registro específico en la tabla Clases
+        :param clase_id:
+        :return:
+        """
         with self.conn.cursor() as cur:
             cur.execute("""
                 DELETE FROM "Clases" WHERE clase_id = %(clase_id)s
@@ -28,6 +42,12 @@ class Clases():
 
 
     def update(self, clase_id: int, updated_data):
+        """
+        CRUD UPDATE. Actualiza un registro específico en la tabla Clases
+        :param clase_id:
+        :param updated_data:
+        :return:
+        """
         update_data = updated_data.dict()
         update_data["clase_id"] = clase_id  # Agregar clase_id al diccionario de datos a actualizar
         with self.conn.cursor() as cur:     # Actualización de los valores en la base de datos
@@ -42,5 +62,9 @@ class Clases():
 
 
     def __del__(self):
+        """
+        Cierra la base de datos
+        :return:
+        """
         if self.conn is not None and not self.conn.closed:
             self.conn.close()

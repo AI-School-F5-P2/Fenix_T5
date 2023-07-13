@@ -4,6 +4,9 @@ import psycopg
 class DataBaseConnection:
 
     def __init__(self):
+        """
+        Constructor. Conecta con la DB
+        """
         try:
             self.conn = psycopg.connect(
                 dbname="Fenix",
@@ -18,4 +21,8 @@ class DataBaseConnection:
             raise
 
     def get_connection(self):
+        """
+        Conecta con la DB
+        :return:
+        """
         return self.conn
