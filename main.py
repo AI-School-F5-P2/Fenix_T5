@@ -3,6 +3,8 @@ from db_connection import DataBaseConnection
 from schema.clases_schema import ClasesSchema
 from model.clases import Clases
 
+clase = 0
+
 app = FastAPI()
 conn = DataBaseConnection()
 clases_instance = Clases()
@@ -24,5 +26,9 @@ async def root():
 def insert(clase_data: ClasesSchema):
     data = clase_data.dict()
     data.pop("clase_id")
-    clases_instance.write(data)
+    clases_instance.insert(data)
+
+@app.delete("/api/delete/{clase_id}")
+def delete(clase_id: int):
+    clases_instance.delete(clase_id)
 
