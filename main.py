@@ -1,11 +1,14 @@
 from fastapi import FastAPI
 from db_connection import DataBaseConnection
 from schema.clases_schema import *
+from schema.alumnos_schema import *
 from model.clases import Clases
+from model.alumnos import Alumnos
 
 app = FastAPI()
 conn = DataBaseConnection()
 clases_instance = Clases()
+alumnos_instance = Alumnos()
 
 @app.get("/")
 async def root():
@@ -28,7 +31,7 @@ async def root():
 def insert(clase_data: ClasesSchema):
     """
     Endpoint Create. Crea un registro en la tabla Clases
-    :param clase_data:
+    :param clase_data:condauvicorn
     :return:
     """
     data = clase_data.dict()
@@ -58,4 +61,34 @@ def update(clase_id: int, updated_data: UpdateClasesSchema):
     return {"message": f"Registro con clase_id {clase_id} modificado exitosamente"}
 
 
+# Endpoints para tabla alumnos
 
+@app.get("/alumnos/")
+async def root_alumnos():
+    """
+    Endpoint Read. Lee todos los resgistros de la tabla Alumnos
+    :return
+    """
+    items = []
+    for data in alumnos_instance.read_all_alumnos():
+        dictionary = {}
+        dictionary["alumno_id"] = data[0]
+        dictionary["nombre_alumno"] = data[1]
+        dictionary["apellido_alumno"] = data[2]
+        dictionary["edad_alumno"] = data[3]
+        dictionary["telefono_alumno"] = data[4]
+        dictionary["email_alumno"] = data[5]
+        items.append(dictionary)
+    return items
+
+@app.post("/alumnos/insert")
+def insert_alumnos(alumno_data: AlumnosSchema):
+    """
+    Endpoint Create. Crea un registro en la tabla Alumnos
+    :param clase_data:AlumnosSchema
+    :return:
+    """
+    data = alumno_data.dict()
+    data.pop("alumno_id")
+    alumnos_instance.insert_alumno(data)
+    return {"message": f"Registro añadido exitosamente"}
