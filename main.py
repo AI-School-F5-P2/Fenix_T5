@@ -97,8 +97,19 @@ def insert_alumnos(alumno_data: AlumnosSchema):
 def delete(alumno_id: int):
     """
     Endpoint Delete. Borra el registro específico de la tabla Alumnos
-    :param clase_id:
+    :param alumno_id:
     :return:
     """
     alumnos_instance.delete(alumno_id)
     return {"message": f"Registro con alumno_id {alumno_id} borrado exitosamente"}
+
+@app.put("/alumnos/update/{alumno_id}")
+def update(alumno_id: int, updated_data: AlumnosUpdateSchema):
+    """
+    Endpoint Update. Actualiza un registro específico de la tabla Alumnos
+    :param alumno_id:
+    :param updated_data:
+    :return:
+    """
+    alumnos_instance.update(alumno_id, updated_data)
+    return {"message": f"Registro con alumno_id {alumno_id} modificado exitosamente"}
