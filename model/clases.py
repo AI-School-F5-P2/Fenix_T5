@@ -21,12 +21,19 @@ class Clases():
         :param data:
         :return:
         """
-        with self.conn.cursor() as cur:
-            cur.execute("""
+        try:
+            with self.conn.cursor() as cur:
+                cur.execute("""
                 INSERT INTO "Clases"(nombre_clase, nivel_clase, precio_clase) 
                 VALUES (%(nombre_clase)s, %(nivel_clase)s, %(precio_clase)s)
             """, data)
-            self.conn.commit()
+                self.conn.commit()
+        except psycopg.Error as e:
+            # En caso de error, deshacer cualquier cambio pendiente
+            connection.rollback()
+            return {"message": f"Error al crear el registro de alumno: {e}"}
+
+
 
     def delete(self, clase_id: int):
         """

@@ -31,7 +31,7 @@ async def root():
 def insert(clase_data: ClasesSchema):
     """
     Endpoint Create. Crea un registro en la tabla Clases
-    :param clase_data:condauvicorn
+    :param clase_data:ClasesSchema
     :return:
     """
     data = clase_data.dict()
