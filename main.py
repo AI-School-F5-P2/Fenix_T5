@@ -10,7 +10,9 @@ conn = DataBaseConnection()
 clases_instance = Clases()
 alumnos_instance = Alumnos()
 
-@app.get("/")
+
+# Endpoints para tabla Clases
+@app.get("/clases/read")
 async def root():
     """
     Endpoint Read. Lee todos los resgistros de la tabla Clases
@@ -27,7 +29,7 @@ async def root():
     return items
 
 
-@app.post("/insert")
+@app.post("/clases/insert")
 def insert(clase_data: ClasesSchema):
     """
     Endpoint Create. Crea un registro en la tabla Clases
@@ -39,7 +41,7 @@ def insert(clase_data: ClasesSchema):
     clases_instance.insert(data)
     return {"message": f"Registro añadido exitosamente"}
 
-@app.delete("/delete/{clase_id}")
+@app.delete("/clases/delete/{clase_id}")
 def delete(clase_id: int):
     """
     Endpoint Delete. Borra el registro específico de la tabla Clase
@@ -49,7 +51,7 @@ def delete(clase_id: int):
     clases_instance.delete(clase_id)
     return {"message": f"Registro con clase_id {clase_id} borrado exitosamente"}
 
-@app.put("/update/{clase_id}")
+@app.put("/clases/update/{clase_id}")
 def update(clase_id: int, updated_data: UpdateClasesSchema):
     """
     Endpoint Update. Actualiza un registro específico de la tabla Clase
@@ -63,7 +65,7 @@ def update(clase_id: int, updated_data: UpdateClasesSchema):
 
 # Endpoints para tabla alumnos
 
-@app.get("/alumnos/")
+@app.get("/alumnos/read")
 async def root_alumnos():
     """
     Endpoint Read. Lee todos los resgistros de la tabla Alumnos
