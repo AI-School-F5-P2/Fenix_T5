@@ -37,7 +37,6 @@ def insert(clase_data: ClasesSchema):
     :return:
     """
     data = clase_data.dict()
-    data.pop("clase_id")
     clases_instance.insert(data)
     return {"message": f"Registro añadido exitosamente"}
 
