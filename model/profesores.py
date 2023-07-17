@@ -37,7 +37,7 @@ class Profesores():
         with self.conn.cursor() as cur:
             cur.execute("""
                 DELETE FROM "Profesores" WHERE profesor_id = %(profesor_id)s
-            """, {"profesor_id": alumno_id})
+            """, {"profesor_id": profesor_id})
             self.conn.commit()
 
 

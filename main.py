@@ -190,3 +190,13 @@ def insert(profesor_data: ProfesoresSchema):
     #data.pop("alumno_id")
     profesores_instance.insert_profesor(data)
     return {"message": f"Registro añadido exitosamente"}
+
+@app.delete("/profesores/delete/{profesor_id}")
+def delete(profesor_id: int):
+    """
+    Endpoint Delete. Borra el registro específico de la tabla Profesores
+    :param profesor_id:
+    :return:
+    """
+    profesores_instance.delete(profesor_id)
+    return {"message": f"Registro con profesor_id {profesor_id} borrado exitosamente"}
