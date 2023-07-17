@@ -134,7 +134,17 @@ async def root_alumnos():
         items.append(dictionary)
     return items
 
-
+@app.post("/alumnos_clases/insert")
+def insert(alumno_data: AlumnosClasesSchema):
+    """
+    Endpoint Create. Crea un registro en la tabla Alumnos_clases
+    :param clase_data:AlumnosClases
+    :return:
+    """
+    data = alumno_data.dict()
+    #data.pop("alumno_id")
+    alumnos_clases_instance.insert_alumno_clase(data)
+    return {"message": f"Registro añadido exitosamente"}
 
 
 @app.delete("/alumnos_clases/delete/{alumno_id}/{clase_id}")

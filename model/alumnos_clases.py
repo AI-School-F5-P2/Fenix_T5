@@ -15,7 +15,7 @@ class AlumnosClases():
             data = cur.fetchall()
             return data
 
-    def insert(self, data):
+    def insert_alumno_clase(self, data):
         """
         CRUD CREATE. Inserta un registro en la tabla Alumnos_clases
         :param data:
