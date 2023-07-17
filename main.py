@@ -14,6 +14,8 @@ from model.profesores_clases import ProfesoresClases
 
 app = FastAPI()
 conn = DataBaseConnection()
+
+# Creación de instancias
 clases_instance = Clases()
 alumnos_instance = Alumnos()
 alumnos_clases_instance = AlumnosClases()
@@ -100,7 +102,6 @@ def insert_alumnos(alumno_data: AlumnosSchema):
     :return:
     """
     data = alumno_data.dict()
-    data.pop("alumno_id")
     alumnos_instance.insert_alumno(data)
     return {"message": f"Registro añadido exitosamente"}
 
@@ -145,11 +146,10 @@ async def root_alumnos():
 def insert(alumno_data: AlumnosClasesSchema):
     """
     Endpoint Create. Crea un registro en la tabla Alumnos_clases
-    :param clase_data:AlumnosClases
+    :param alumno_data: AlumnosClasesSchema
     :return:
     """
     data = alumno_data.dict()
-    #data.pop("alumno_id")
     alumnos_clases_instance.insert_alumno_clase(data)
     return {"message": f"Registro añadido exitosamente"}
 
@@ -208,8 +208,8 @@ def delete(profesor_id: int):
 def update(profesor_id: int, updated_data: ProfesoresSchema):
     """
     Endpoint Update. Actualiza un registro específico de la tabla Profesores
-    :param profesor_id:
-    :param updated_data:
+    :param profesor_id: int
+    :param updated_data: ProfesoresSchema
     :return:
     """
     profesores_instance.update(profesor_id, updated_data)
