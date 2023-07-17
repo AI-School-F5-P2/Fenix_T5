@@ -90,10 +90,10 @@ def insert_alumnos(alumno_data: AlumnosSchema):
     :param clase_data:AlumnosSchema
     :return:
     """
-    data = alumno_data.dict()
-    data.pop("alumno_id")
-    alumnos_instance.insert_alumno(data)
-    return {"message": f"Registro añadido exitosamente"}
+    # data = alumno_data.dict()
+    # data.pop("alumno_id")
+    #alumnos_instance.insert_alumno(data)
+    return alumnos_instance.insert_alumno(alumno_data)
 
 @app.delete("/alumnos/delete/{alumno_id}")
 def delete(alumno_id: int):

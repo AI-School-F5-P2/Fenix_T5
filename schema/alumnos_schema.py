@@ -8,6 +8,7 @@ class AlumnosSchema(BaseModel):
     edad_alumno: int
     telefono_alumno: str
     email_alumno: str
+    clase_id: int
 
 
 class AlumnosUpdateSchema(BaseModel):
@@ -16,3 +17,4 @@ class AlumnosUpdateSchema(BaseModel):
     edad_alumno: int
     telefono_alumno: str
     email_alumno: str
+
