@@ -24,7 +24,7 @@ class Profesores():
         with self.conn.cursor() as cur:
             cur.execute("""
                 INSERT INTO "Profesores"(nombre_profesor) 
-                VALUES (%(nombre_profesor)s,)
+                VALUES (%(nombre_profesor)s)
             """, data)
             self.conn.commit()
 

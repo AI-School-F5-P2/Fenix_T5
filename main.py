@@ -178,3 +178,15 @@ async def root_profesores():
         dictionary["nombre_profesor"] = data[1]
         items.append(dictionary)
     return items
+
+@app.post("/profesores/insert")
+def insert(profesor_data: ProfesoresSchema):
+    """
+    Endpoint Create. Crea un registro en la tabla Profesores
+    :param profesor_data:ProfesoresSchema
+    :return:
+    """
+    data = profesor_data.dict()
+    #data.pop("alumno_id")
+    profesores_instance.insert_profesor(data)
+    return {"message": f"Registro añadido exitosamente"}
