@@ -120,6 +120,22 @@ def update(alumno_id: int, updated_data: AlumnosUpdateSchema):
 
 # Endpoints para tabla Alumnos_clases
 
+@app.get("/alumnos_clases/read")
+async def root_alumnos():
+    """
+    Endpoint Read. Lee todos los resgistros de la tabla Alumnos_clases
+    :return
+    """
+    items = []
+    for data in alumnos_clases_instance.read_all_alumnos_clases():
+        dictionary = {}
+        dictionary["alumno_id"] = data[0]
+        dictionary["clase_id"] = data[1]
+        items.append(dictionary)
+    return items
+
+
+
 
 @app.delete("/alumnos_clases/delete/{alumno_id}/{clase_id}")
 def delete(alumno_id: int, clase_id: int):
