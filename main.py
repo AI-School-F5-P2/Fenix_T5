@@ -2,13 +2,16 @@ from fastapi import FastAPI
 from db_connection import DataBaseConnection
 from schema.clases_schema import *
 from schema.alumnos_schema import *
+from schema.alumnos_clases_schema import *
 from model.clases import Clases
 from model.alumnos import Alumnos
+from model.alumnos_clases import AlumnosClases
 
 app = FastAPI()
 conn = DataBaseConnection()
 clases_instance = Clases()
 alumnos_instance = Alumnos()
+alumnos_clases_instance = AlumnosClases()
 
 
 # Endpoints para tabla Clases
@@ -114,3 +117,17 @@ def update(alumno_id: int, updated_data: AlumnosUpdateSchema):
     """
     alumnos_instance.update(alumno_id, updated_data)
     return {"message": f"Registro con alumno_id {alumno_id} modificado exitosamente"}
+
+# Endpoints para tabla Alumnos_clases
+
+
+@app.delete("/alumnos_clases/delete/{alumno_id}/{clase_id}")
+def delete(alumno_id: int, clase_id: int):
+    """
+    Endpoint Delete. Borra el registro específico de la tabla Alumnos_clases
+    :param alumno_id:
+    :param clase_id:
+    :return:
+    """
+    alumnos_clases_instance.delete(alumno_id, clase_id)
+    return {"message": f"Registro con alumno_id  borrado exitosamente"}
