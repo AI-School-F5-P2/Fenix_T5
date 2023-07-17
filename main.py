@@ -4,10 +4,13 @@ from schema.clases_schema import *
 from schema.alumnos_schema import *
 from schema.alumnos_clases_schema import *
 from schema.profesores_schema import *
+from schema.profesores_clases_schema import *
+
 from model.clases import Clases
 from model.alumnos import Alumnos
 from model.alumnos_clases import AlumnosClases
 from model.profesores import Profesores
+from model.profesores_clases import ProfesoresClases
 
 app = FastAPI()
 conn = DataBaseConnection()
@@ -15,6 +18,7 @@ clases_instance = Clases()
 alumnos_instance = Alumnos()
 alumnos_clases_instance = AlumnosClases()
 profesores_instance = Profesores()
+profesores_clases_instance = ProfesoresClases()
 
 
 # Endpoints para tabla Clases
@@ -210,3 +214,43 @@ def update(profesor_id: int, updated_data: ProfesoresSchema):
     """
     profesores_instance.update(profesor_id, updated_data)
     return {"message": f"Registro con profesor_id {profesor_id} modificado exitosamente"}
+
+
+# Endpoints para tabla Profesores_clases *************************
+
+@app.get("/profesores_clases/read")
+async def root_profesores_clases():
+    """
+    Endpoint Read. Lee todos los resgistros de la tabla Profesores_clases
+    :return
+    """
+    items = []
+    for data in profesores_clases_instance.read_all_profesores_clases():
+        dictionary = {}
+        dictionary["profesor_id"] = data[0]
+        dictionary["clase_id"] = data[1]
+        items.append(dictionary)
+    return items
+
+@app.post("/profesores_clases/insert")
+def insert(profesor_data: ProfesoresClasesSchema):
+    """
+    Endpoint Create. Crea un registro en la tabla Profesores_clases
+    :param clase_data:ProfesoresClasesSchema
+    :return:
+    """
+    data = profesor_data.dict()
+    profesores_clases_instance.insert_profesor_clase(data)
+    return {"message": f"Registro añadido exitosamente"}
+
+
+@app.delete("/profesores_clases/delete/{profesor_id}/{clase_id}")
+def delete(profesor_id: int, clase_id: int):
+    """
+    Endpoint Delete. Borra el registro específico de la tabla Profesores_clases
+    :param profesor_id:
+    :param clase_id:
+    :return:
+    """
+    profesores_clases_instance.delete(profesor_id, clase_id)
+    return {"message": f"Registro con profesor_id {profesor_id} y clase_id {clase_id} borrado exitosamente"}
