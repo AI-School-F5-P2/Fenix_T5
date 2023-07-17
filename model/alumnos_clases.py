@@ -42,28 +42,7 @@ class AlumnosClases():
             self.conn.commit()
 
 
-    def update(self, alumno_id: int, updated_data):
-        """
-        CRUD UPDATE. Actualiza un registro específico en la tabla Alumnos
-        :param clase_id:
-        :param updated_data:
-        :return:
-        """
-        update_data = updated_data.dict()
-        update_data["alumno_id"] = alumno_id  # Agregar alumno_id al diccionario de datos a actualizar
-        with self.conn.cursor() as cur:     # Actualización de los valores en la base de datos
-            cur.execute("""                 
-                UPDATE "Alumnos" SET
-                nombre_alumno = %(nombre_alumno)s,
-                apellidos_alumno = %(apellidos_alumno)s,
-                edad_alumno = %(edad_alumno)s,
-                telefono_alumno = %(telefono_alumno)s,
-                email_alumno = %(email_alumno)s
-                WHERE alumno_id = %(alumno_id)s
-            """, {"nombre_alumno": update_data["nombre_alumno"], "apellidos_alumno": update_data["apellidos_alumno"],
-                  "edad_alumno": update_data["edad_alumno"], "telefono_alumno": update_data["telefono_alumno"],
-                  "email_alumno": update_data["email_alumno"], "alumno_id": alumno_id})
-            self.conn.commit()
+
 
 
     def __del__(self):

@@ -3,15 +3,18 @@ from db_connection import DataBaseConnection
 from schema.clases_schema import *
 from schema.alumnos_schema import *
 from schema.alumnos_clases_schema import *
+from schema.profesores_schema import *
 from model.clases import Clases
 from model.alumnos import Alumnos
 from model.alumnos_clases import AlumnosClases
+from model.profesores import Profesores
 
 app = FastAPI()
 conn = DataBaseConnection()
 clases_instance = Clases()
 alumnos_instance = Alumnos()
 alumnos_clases_instance = AlumnosClases()
+profesores_instance = Profesores()
 
 
 # Endpoints para tabla Clases
@@ -118,7 +121,7 @@ def update(alumno_id: int, updated_data: AlumnosUpdateSchema):
     alumnos_instance.update(alumno_id, updated_data)
     return {"message": f"Registro con alumno_id {alumno_id} modificado exitosamente"}
 
-# Endpoints para tabla Alumnos_clases
+# Endpoints para tabla Alumnos_clases *************************
 
 @app.get("/alumnos_clases/read")
 async def root_alumnos():
@@ -157,3 +160,21 @@ def delete(alumno_id: int, clase_id: int):
     """
     alumnos_clases_instance.delete(alumno_id, clase_id)
     return {"message": f"Registro con alumno_id  borrado exitosamente"}
+
+
+
+# Endpoints para tabla Profesores *************************
+
+@app.get("/profesores/read")
+async def root_profesores():
+    """
+    Endpoint Read. Lee todos los resgistros de la tabla Profesores
+    :return
+    """
+    items = []
+    for data in profesores_instance.read_all_profesores():
+        dictionary = {}
+        dictionary["profesor_id"] = data[0]
+        dictionary["nombre_profesor"] = data[1]
+        items.append(dictionary)
+    return items
