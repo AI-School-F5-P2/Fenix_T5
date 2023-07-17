@@ -187,7 +187,6 @@ def insert(profesor_data: ProfesoresSchema):
     :return:
     """
     data = profesor_data.dict()
-    #data.pop("alumno_id")
     profesores_instance.insert_profesor(data)
     return {"message": f"Registro añadido exitosamente"}
 
@@ -200,3 +199,14 @@ def delete(profesor_id: int):
     """
     profesores_instance.delete(profesor_id)
     return {"message": f"Registro con profesor_id {profesor_id} borrado exitosamente"}
+
+@app.put("/profesores/update/{profesor_id}")
+def update(profesor_id: int, updated_data: ProfesoresSchema):
+    """
+    Endpoint Update. Actualiza un registro específico de la tabla Profesores
+    :param profesor_id:
+    :param updated_data:
+    :return:
+    """
+    profesores_instance.update(profesor_id, updated_data)
+    return {"message": f"Registro con profesor_id {profesor_id} modificado exitosamente"}
