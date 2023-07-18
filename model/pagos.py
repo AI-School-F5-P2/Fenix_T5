@@ -1,4 +1,6 @@
 import psycopg
+from psycopg import Error
+
 from db_connection import DataBaseConnection
 
 class Pagos():
@@ -65,6 +67,19 @@ class Pagos():
             self.conn.commit()
 
 
+    def pagos_by_alumnos(self, alumno_id):
+        with self.conn.cursor() as cur:
+            cur.execute(
+                """
+                   SELECT alumno_id, clase_id, importe_pagado, fecha_pago
+                   FROM "Pagos"
+                   WHERE alumno_id = %(alumno_id)s
+                """, {"alumno_id": alumno_id})
+            data = cur.fetchall()
+            return data
+            self.conn.commit()
+
+
     def __del__(self):
         """
         Cierra la base de datos
@@ -72,3 +87,11 @@ class Pagos():
         """
         if self.conn is not None and not self.conn.closed:
             self.conn.close()
+
+
+def calculo_descuento_pack():
+    """
+    Función que calcula el descuento por packs
+    :return:
+    """
+    pass

@@ -1,4 +1,6 @@
 from fastapi import FastAPI
+from typing import List
+
 from db_connection import DataBaseConnection
 from schema.clases_schema import *
 from schema.alumnos_schema import *
@@ -312,3 +314,18 @@ def update(pago_id: int, updated_data: PagosSchema):
     """
     pagos_instance.update(pago_id, updated_data)
     return {"message": f"Registro con pago_id {pago_id} modificado exitosamente"}
+
+@app.get("/pagos/cliente/{alumno_id}")
+def get_pagos_by_alumno_id(alumno_id: int):
+    """
+        Obtiene todos los registros de la tabla Pagos para un alumno_id dado.
+    """
+    items = []
+    for data in pagos_instance.pagos_by_alumnos(alumno_id):
+        dictionary = {}
+        dictionary["alumno_id_id"] = data[0]
+        dictionary["clase_id"] = data[1]
+        dictionary["importe_pagado"] = data[2]
+        dictionary["fecha_pago"] = data[3]
+        items.append(dictionary)
+    return items

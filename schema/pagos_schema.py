@@ -9,3 +9,9 @@ class PagosSchema(BaseModel):
     clase_id: int
     fecha_pago: datetime.date
 
+class PagosClienteSchema(BaseModel):
+    alumno_id: int
+    clase_id: int
+    importe_pagado: float
+    fecha_pago: datetime.date
+
