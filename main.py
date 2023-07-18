@@ -289,3 +289,13 @@ def insert(pago_data: PagosSchema):
     data = pago_data.dict()
     pagos_instance.insert(data)
     return {"message": f"Registro añadido exitosamente"}
+
+@app.delete("/pagos/delete/{pago_id}")
+def delete(pago_id: int):
+    """
+    Endpoint Delete. Borra el registro específico de la tabla Pagos
+    :param pago_id:
+    :return:
+    """
+    pagos_instance.delete(pago_id)
+    return {"message": f"Registro con pago_id {pago_id} borrado exitosamente"}
