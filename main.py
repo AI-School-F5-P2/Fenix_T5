@@ -278,3 +278,14 @@ async def root_pagos():
         dictionary["fecha_pago"] = data[4]
         items.append(dictionary)
     return items
+
+@app.post("/pagos/insert")
+def insert(pago_data: PagosSchema):
+    """
+    Endpoint Create. Crea un registro en la tabla Pagos
+    :param profesor_data:PagosSchema
+    :return:
+    """
+    data = pago_data.dict()
+    pagos_instance.insert(data)
+    return {"message": f"Registro añadido exitosamente"}
