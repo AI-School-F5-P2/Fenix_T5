@@ -299,3 +299,14 @@ def delete(pago_id: int):
     """
     pagos_instance.delete(pago_id)
     return {"message": f"Registro con pago_id {pago_id} borrado exitosamente"}
+
+@app.put("/pagos/update/{pago_id}")
+def update(pago_id: int, updated_data: PagosSchema):
+    """
+    Endpoint Update. Actualiza un registro específico de la tabla Pagos
+    :param pago_id: int
+    :param updated_data: PagosSchema
+    :return:
+    """
+    pagos_instance.update(pago_id, updated_data)
+    return {"message": f"Registro con pago_id {pago_id} modificado exitosamente"}
