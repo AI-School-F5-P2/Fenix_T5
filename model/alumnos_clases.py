@@ -56,7 +56,7 @@ class AlumnosClases():
             cur.execute("""                 
                 UPDATE "Alumnos_clases" SET
                 alumno_id = %(alumno_id)s,
-                clase_id = %(alumno_id)s
+                clase_id = %(clase_id)s
                 WHERE alumno_id = %(alumno_id)s AND clase_id = %(clase_id)s
             """, {"alumno_id": update_data["alumno_id"], "clase_id": update_data["clase_id"],
                   "alumno_id": alumno_id, "clase_id": clase_id})

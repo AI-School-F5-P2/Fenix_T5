@@ -42,6 +42,28 @@ class ProfesoresClases():
             self.conn.commit()
 
 
+    def update(self, profesor_id: int, clase_id: int, updated_data):
+        """
+        CRUD UPDATE. Actualiza un registro específico en la tabla Profesores_clases
+        :param profesor_id:
+        :param clase_id:
+        :param updated_data:
+        :return:
+        """
+        update_data = updated_data.dict()
+        update_data["profesor_id"] = profesor_id  # Agregar profesor_id al diccionario de datos a actualizar
+        with self.conn.cursor() as cur:     # Actualización de los valores en la base de datos
+            cur.execute("""                 
+                UPDATE "Profesores_clases" SET
+                profesor_id = %(profesor_id)s,
+                clase_id = %(clase_id)s
+                WHERE profesor_id = %(profesor_id)s AND clase_id = %(clase_id)s
+            """, {"profesor_id": update_data["profesor_id"], "clase_id": update_data["clase_id"],
+                  "profesor_id": profesor_id, "clase_id": clase_id})
+            self.conn.commit()
+
+
+
 
     def __del__(self):
         """

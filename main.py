@@ -267,3 +267,16 @@ def delete(profesor_id: int, clase_id: int):
     """
     profesores_clases_instance.delete(profesor_id, clase_id)
     return {"message": f"Registro con profesor_id {profesor_id} y clase_id {clase_id} borrado exitosamente"}
+
+@app.put("/profesores_clases/update/{profesor_id}/{clase_id}")
+def update(profesor_id: int, clase_id: int, updated_data: ProfesoresClasesSchema):
+    """
+    Endpoint Update. Actualiza un registro específico de la tabla Profesores_clases
+    :param profesor_id:
+    :param clase_id:
+    :param updated_data:
+    :return:
+    """
+    profesores_clases_instance.update(profesor_id, clase_id, updated_data)
+    return {"message": f"Registro con profesor_id {profesor_id} y clase_id {clase_id} modificado exitosamente"}
+
