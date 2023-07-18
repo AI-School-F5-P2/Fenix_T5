@@ -24,6 +24,42 @@ class Pagos():
         :return:
         """
 
+        #importe_pagado = data["importe_pagado"]
+        alumno_id = data["alumno_id"]
+        clase_id = data["clase_id"]
+        fecha_pago = data["fecha_pago"]
+
+        # Obtener el precio de la clase de la tabla Clases
+        with self.conn.cursor() as cur:
+            cur.execute(
+                """
+                    SELECT precio_clase FROM "Clases" WHERE clase_id = %(clase_id)s
+                """,{"clase_id": clase_id})
+            precio_clase = cur.fetchone()[0]
+
+        # Consulta para obtener el número de clases inscritas para el alumno
+        with self.conn.cursor() as cur:
+            cur.execute(
+                """
+                    SELECT COUNT(*) FROM "Pagos" WHERE alumno_id = %s
+                """, (alumno_id,))
+            clases_inscritas = cur.fetchone()[0]
+
+        # Verificar si se aplica descuento basado en el pack de clases y el número de clases inscritas
+        descuento = 0.0
+        if clase_id in [1, 2, 3, 4] and clases_inscritas >= 2:
+            descuento = 0.5
+        elif clase_id in [5, 6, 7, 8] and clases_inscritas >= 2:
+            descuento = 0.75
+
+        # Calcular el importe pagado con el descuento aplicado
+        importe_pagado_descuento = precio_clase * (1 - descuento)
+
+        # Actualizar el diccionario de datos con el importe pagado calculado
+        data["importe_pagado"] = importe_pagado_descuento
+
+        # Insertar el registro en la tabla "Pagos" con el importe pagado calculado
+
         with self.conn.cursor() as cur:
             cur.execute("""
                 INSERT INTO "Pagos"(importe_pagado, alumno_id, clase_id, fecha_pago) 
@@ -79,6 +115,13 @@ class Pagos():
             return data
             self.conn.commit()
 
+    def calculo_descuento_pack(self):
+        """
+        Función que calcula el descuento por packs
+        :return:
+        """
+        pass
+
 
     def __del__(self):
         """
@@ -89,9 +132,3 @@ class Pagos():
             self.conn.close()
 
 
-def calculo_descuento_pack():
-    """
-    Función que calcula el descuento por packs
-    :return:
-    """
-    pass

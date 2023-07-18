@@ -294,6 +294,7 @@ def insert(pago_data: PagosSchema):
     pagos_instance.insert(data)
     return {"message": f"Registro añadido exitosamente"}
 
+
 @app.delete("/pagos/delete/{pago_id}")
 def delete(pago_id: int):
     """
@@ -329,3 +330,7 @@ def get_pagos_by_alumno_id(alumno_id: int):
         dictionary["fecha_pago"] = data[3]
         items.append(dictionary)
     return items
+
+
+# if __name__ == "__main__":
+#     uvicorn.run(app, host="0.0.0.0", port=8000)
