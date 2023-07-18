@@ -7,7 +7,3 @@ class ClasesSchema(BaseModel):
     nivel_clase: str
     precio_clase: float
 
-class UpdateClasesSchema(BaseModel):
-    nombre_clase: str
-    nivel_clase: str
-    precio_clase: float
