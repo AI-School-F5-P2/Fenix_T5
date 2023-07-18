@@ -42,9 +42,6 @@ class AlumnosClases():
             self.conn.commit()
 
 
-
-
-
     def __del__(self):
         """
         Cierra la base de datos
