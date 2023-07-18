@@ -5,12 +5,14 @@ from schema.alumnos_schema import *
 from schema.alumnos_clases_schema import *
 from schema.profesores_schema import *
 from schema.profesores_clases_schema import *
+from schema.pagos_schema import *
 
 from model.clases import Clases
 from model.alumnos import Alumnos
 from model.alumnos_clases import AlumnosClases
 from model.profesores import Profesores
 from model.profesores_clases import ProfesoresClases
+from model.pagos import Pagos
 
 app = FastAPI()
 conn = DataBaseConnection()
@@ -21,6 +23,7 @@ alumnos_instance = Alumnos()
 alumnos_clases_instance = AlumnosClases()
 profesores_instance = Profesores()
 profesores_clases_instance = ProfesoresClases()
+pagos_instance = Pagos()
 
 
 # Endpoints para tabla Clases
@@ -255,3 +258,23 @@ def delete(profesor_id: int, clase_id: int):
     """
     profesores_clases_instance.delete(profesor_id, clase_id)
     return {"message": f"Registro con profesor_id {profesor_id} y clase_id {clase_id} borrado exitosamente"}
+
+
+# Endpoints para la tabla Pagos ***************************
+
+@app.get("/pagos/read")
+async def root_pagos():
+    """
+    Endpoint Read. Lee todos los resgistros de la tabla Pagos
+    :return
+    """
+    items = []
+    for data in pagos_instance.read_all_pagos():
+        dictionary = {}
+        dictionary["pago_id"] = data[0]
+        dictionary["importe_pagado"] = data[1]
+        dictionary["alumno_id"] = data[2]
+        dictionary["clase_id"] = data[3]
+        dictionary["fecha_pago"] = data[4]
+        items.append(dictionary)
+    return items
