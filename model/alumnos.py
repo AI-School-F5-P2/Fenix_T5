@@ -22,8 +22,12 @@ class Alumnos():
         :return:
         """
         with self.conn.cursor() as cur:
-            cur.execute('SELECT inscribir_alumno();')
-        self.conn.commit()
+            cur.execute("""
+                INSERT INTO "Alumnos"(nombre_alumno, apellidos_alumno, edad_alumno, telefono_alumno, email_alumno, familiar_alumno) 
+                VALUES (%(nombre_alumno)s, %(apellidos_alumno)s, %(edad_alumno)s, %(telefono_alumno)s, %(email_alumno)s, %(familiar_alumno)s )
+            """, data)
+            self.conn.commit()
+
 
     def delete(self, alumno_id: int):
         """

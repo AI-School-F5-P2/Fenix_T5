@@ -97,6 +97,7 @@ async def root_alumnos():
         dictionary["edad_alumno"] = data[3]
         dictionary["telefono_alumno"] = data[4]
         dictionary["email_alumno"] = data[5]
+        dictionary["familiar"] = data[6]
         items.append(dictionary)
     return items
 
