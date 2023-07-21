@@ -10,10 +10,10 @@ class DataBaseConnection:
         try:
             self.conn = psycopg.connect(
                 dbname="Fenix",
-                user="postgres",
-                password="9527",
+                user="neo",
+                password="4972",
                 host="localhost",
-                port=5432
+                port=5433
             )
         except psycopg.OperationalError as err:
             print(err)
