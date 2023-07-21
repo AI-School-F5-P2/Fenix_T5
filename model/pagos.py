@@ -47,9 +47,9 @@ class Pagos():
 
         # Verificar si se aplica descuento basado en el pack de clases y el número de clases inscritas
         descuento = 0.0
-        if clase_id in [1, 2, 3, 4] and clases_inscritas >= 2:
+        if clase_id in range(1,25)  and  2 <= clases_inscritas <= 3:
             descuento = 0.5
-        elif clase_id in [5, 6, 7, 8] and clases_inscritas >= 2:
+        elif clase_id in range(1,25) and clases_inscritas >= 2:
             descuento = 0.75
 
         # Calcular el importe pagado con el descuento aplicado

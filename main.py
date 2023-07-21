@@ -42,6 +42,7 @@ async def root():
         dictionary["nombre_clase"] = data[1]
         dictionary["nivel_clase"] = data[2]
         dictionary["precio_clase"] = data[3]
+        dictionary["pack"] = data[4]
         items.append(dictionary)
     return items
 
