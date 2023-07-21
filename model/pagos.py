@@ -29,7 +29,6 @@ class Pagos():
         fecha_pago = data["fecha_pago"]
 
 
-
         # Obtener el precio de la clase de la tabla Clases
         with self.conn.cursor() as cur:
             cur.execute(
@@ -42,7 +41,7 @@ class Pagos():
         with self.conn.cursor() as cur:
             cur.execute(
                 """
-                    SELECT COUNT(*) FROM "Pagos" WHERE alumno_id = %s
+                    SELECT COUNT(*) FROM "Pagos" WHERE alumno_id = %s  
                 """, (alumno_id,))
             clases_inscritas = cur.fetchone()[0]
             clases_inscritas += 1
@@ -63,12 +62,14 @@ class Pagos():
                 """, {"alumno_id": alumno_id})
             es_familiar = cur.fetchone()[0]
 
-        # Verificar si se aplica descuento basado en el pack de clases, el nro. de clases inscritas y el familiar
-        descuento = 0.0
+        # Verificar si se aplica descuento basado en un pack de clases, el nro. de clases inscritas y el familiar
+
+        descuento = 0.0  # lo correcto es guardarlo como campo en una tabla
+
         # Inscribe una clase de pack y es la 2º ó 3ª clase
         if (tipo_pack == 1 or tipo_pack == 2 or tipo_pack == 3)  and  (2 <= clases_inscritas <= 3):
             if es_familiar:
-                descuento = 0.5 + (0.5 * 0.1)     # Se hace un 10% extra de descuento
+                descuento = (1-0.5) * (1-0.1)     # Se hace un 10% extra de descuento
                 # Se actualiza el valor de "familiar" a True (Así se evita hacer más dcto. por familiar)
                 with self.conn.cursor() as cur: #Creo que esto no hace falta x ya tiene el true puesto
                     cur.execute(
@@ -81,7 +82,7 @@ class Pagos():
         # Inscribe una clase de pack y es la 4º o más de pack
         elif (tipo_pack == 1 or tipo_pack == 2 or tipo_pack == 3) and (clases_inscritas >3):
             if es_familiar:
-                descuento = 0.75 + (0.75 * 0.1)    # Se hace un 10% extra de descuento
+                descuento = (1-0.75) * (1-0.1)     # Se hace un 10% extra de descuento
                 # Se actualiza el valor de "familiar" a True (Así se evita hacer más dcto. por familiar)
                 with self.conn.cursor() as cur:
                     cur.execute(
