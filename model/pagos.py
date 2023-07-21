@@ -1,6 +1,5 @@
 import psycopg
 from psycopg import Error
-
 from db_connection import DataBaseConnection
 
 class Pagos():
@@ -28,6 +27,7 @@ class Pagos():
         alumno_id = data["alumno_id"]
         clase_id = data["clase_id"]
         fecha_pago = data["fecha_pago"]
+
 
         # Obtener el precio de la clase de la tabla Clases
         with self.conn.cursor() as cur:

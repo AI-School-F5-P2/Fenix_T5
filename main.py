@@ -316,7 +316,7 @@ def update(pago_id: int, updated_data: PagosSchema):
     pagos_instance.update(pago_id, updated_data)
     return {"message": f"Registro con pago_id {pago_id} modificado exitosamente"}
 
-@app.get("/pagos/cliente/{alumno_id}")
+@app.get("/pagos/alumno/{alumno_id}")
 def get_pagos_by_alumno_id(alumno_id: int):
     """
         Obtiene todos los registros de la tabla Pagos para un alumno_id dado.
@@ -332,5 +332,3 @@ def get_pagos_by_alumno_id(alumno_id: int):
     return items
 
 
-# if __name__ == "__main__":
-#     uvicorn.run(app, host="0.0.0.0", port=8000)
