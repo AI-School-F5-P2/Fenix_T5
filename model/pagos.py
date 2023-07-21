@@ -29,6 +29,7 @@ class Pagos():
         fecha_pago = data["fecha_pago"]
 
 
+
         # Obtener el precio de la clase de la tabla Clases
         with self.conn.cursor() as cur:
             cur.execute(
@@ -44,13 +45,23 @@ class Pagos():
                     SELECT COUNT(*) FROM "Pagos" WHERE alumno_id = %s
                 """, (alumno_id,))
             clases_inscritas = cur.fetchone()[0]
+            clases_inscritas += 1
+
+        # Obtener el tipo de pack de la clase de la tabla Clases
+        with self.conn.cursor() as cur:
+            cur.execute(
+                """
+                    SELECT pack FROM "Clases" WHERE clase_id = %(clase_id)s
+                """, {"clase_id": clase_id})
+            tipo_pack = cur.fetchone()[0]
 
         # Verificar si se aplica descuento basado en el pack de clases y el número de clases inscritas
         descuento = 0.0
-        if clase_id in range(1,25)  and  2 <= clases_inscritas <= 3:
+        if (tipo_pack == 1 or tipo_pack == 2 or tipo_pack == 3)  and  (2 <= clases_inscritas <= 3):
             descuento = 0.5
-        elif clase_id in range(1,25) and clases_inscritas >= 2:
+        elif (tipo_pack == 1 or tipo_pack == 2 or tipo_pack == 3) and (clases_inscritas >3):
             descuento = 0.75
+
 
         # Calcular el importe pagado con el descuento aplicado
         importe_pagado_descuento = precio_clase * (1 - descuento)
