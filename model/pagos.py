@@ -29,6 +29,18 @@ class Pagos():
         fecha_pago = data["fecha_pago"]
 
 
+        # Insertar alumno_id y clase_id en Tabla Alumnos_clases
+
+        with self.conn.cursor() as cur:
+            cur.execute(
+                """
+                    INSERT INTO  "Alumnos_clases"(alumno_id, clase_id)
+                    VALUES (%(alumno_id)s, %(clase_id)s)
+                """, {"alumno_id": alumno_id,"clase_id": clase_id})
+            self.conn.commit()
+
+
+
         # Obtener el precio de la clase de la tabla Clases
         with self.conn.cursor() as cur:
             cur.execute(
@@ -58,7 +70,7 @@ class Pagos():
             )
             clases_por_pack = cur.fetchall()
 
-        # Obtener valor de familiar de la tabla Pagos
+        # Obtener valor de familiar de la tabla Alumnos
         with self.conn.cursor() as cur:
             cur.execute(
                 """
