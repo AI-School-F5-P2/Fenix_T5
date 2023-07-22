@@ -8,7 +8,8 @@ class AlumnosSchema(BaseModel):
     telefono_alumno: str
     email_alumno: str
     familiar: bool = fields.Field(default=False)
-    #clase_id: int
+
+
 
 
 class AlumnosUpdateSchema(BaseModel):

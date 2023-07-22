@@ -37,15 +37,6 @@ class Pagos():
                 """,{"clase_id": clase_id})
             precio_clase = cur.fetchone()[0]
 
-        # Consulta para obtener el número de clases inscritas para el alumno
-        # with self.conn.cursor() as cur:
-        #     cur.execute(
-        #         """
-        #             SELECT COUNT(*) FROM "Pagos" WHERE alumno_id = %s
-        #         """, (alumno_id,))
-        #     clases_inscritas = cur.fetchone()[0]
-        #     clases_inscritas += 1
-
         # Obtener el tipo de pack de la clase de la tabla Clases
         with self.conn.cursor() as cur:
             cur.execute(
@@ -54,7 +45,7 @@ class Pagos():
                 """, {"clase_id": clase_id})
             tipo_pack = cur.fetchone()[0]
 
-        # Consulta para obtener el número de clases inscritas para el alumno
+        # Consulta para obtener el número de clases inscritas para el alumno por pack
         with self.conn.cursor() as cur:
             cur.execute(
                 """
@@ -67,7 +58,7 @@ class Pagos():
             )
             clases_por_pack = cur.fetchall()
 
-        # Obtener valor de familiar de la tabla Alumnos
+        # Obtener valor de familiar de la tabla Pagos
         with self.conn.cursor() as cur:
             cur.execute(
                 """
@@ -83,70 +74,22 @@ class Pagos():
                 descuento = 0.0
                 if es_familiar:
                     descuento = 0.1
+                    es_familiar = False
             elif 2 <= clases_inscritas_pack <= 3:
                 descuento = 0.5
                 if es_familiar:
                     descuento = (1 - 0.5) * (1 - 0.1)
+                    es_familiar = False
             elif clases_inscritas_pack > 3:
                 descuento = (1- 0.75)
                 if es_familiar:
                     descuento = (1 - 0.75) * (1 - 0.1)
+                    es_familiar = False
         else:
-            descuento = 0.0
+            descuento = 1
             if es_familiar:
-                descuento = 0.1
-
-
-
-        # Verificar si se aplica descuento basado en un pack de clases, el nro. de clases inscritas y el familiar
-        # if tipo_pack > nro_packs:
-        #     descuento = 0.0  # lo correcto es guardarlo como campo en una tabla
-        #     if es_familiar:
-        #         descuento = 0.1
-        # else:
-        #     match tipo_pack:
-        #         case 1:
-        #             if clases_pack_1 < 2:
-        #                 descuento = 0.0
-        #                 if es_familiar:
-        #                     descuento = 0.1
-        #             elif 2 <= clases_pack_1 <= 3:
-        #                 descuento = 0.5
-        #                 if es_familiar:
-        #                     descuento = (1 - 0.5) * (1 - 0.1)
-        #             elif clases_pack_1 > 3:
-        #                 descuento = 0.75
-        #                 if es_familiar:
-        #                     descuento = (1 - 0.75) * (1 - 0.1)
-        #         case 2:
-        #             if clases_pack_2 < 2:
-        #                 descuento = 0.0
-        #                 if es_familiar:
-        #                     descuento = 0.1
-        #             elif 2 <= clases_pack_2 <= 3:
-        #                 descuento = 0.5
-        #                 if es_familiar:
-        #                     descuento = (1 - 0.5) * (1 - 0.1)
-        #             elif clases_pack_2 > 3:
-        #                 descuento = 0.75
-        #                 if es_familiar:
-        #                     descuento = (1 - 0.75) * (1 - 0.1)
-        #         case 3:
-        #             if clases_pack_3 < 2:
-        #                 descuento = 0.0
-        #                 if es_familiar:
-        #                     descuento = 0.1
-        #             elif 2 <= clases_pack_3 <= 3:
-        #                 descuento = 0.5
-        #                 if es_familiar:
-        #                     descuento = (1 - 0.5) * (1 - 0.1)
-        #             elif clases_pack_3 > 3:
-        #                 descuento = 0.75
-        #                 if es_familiar:
-        #                     descuento = (1 - 0.75) * (1 - 0.1)
-        #         case 0:
-        #             if es_familiar:
-        #                 descuento = 0.1
+                descuento = (1 - 0.1)
+                es_familiar = False
 
 
         # Calcular el importe pagado con el descuento aplicado
@@ -155,12 +98,13 @@ class Pagos():
         # Actualizar el diccionario de datos con el importe pagado calculado
         data["importe_pagado"] = importe_pagado_descuento
 
+
         # Insertar el registro en la tabla "Pagos" con el importe pagado calculado
 
         with self.conn.cursor() as cur:
             cur.execute("""
                 INSERT INTO "Pagos"(importe_pagado, alumno_id, clase_id, fecha_pago) 
-                VALUES (%(importe_pagado)s, %(alumno_id)s, %(clase_id)s, %(fecha_pago)s )
+                VALUES (%(importe_pagado)s, %(alumno_id)s, %(clase_id)s, %(fecha_pago)s)
             """, data)
             self.conn.commit()
 
