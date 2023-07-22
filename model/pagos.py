@@ -100,13 +100,25 @@ class Pagos():
 
 
         # Insertar el registro en la tabla "Pagos" con el importe pagado calculado
-
         with self.conn.cursor() as cur:
             cur.execute("""
                 INSERT INTO "Pagos"(importe_pagado, alumno_id, clase_id, fecha_pago) 
                 VALUES (%(importe_pagado)s, %(alumno_id)s, %(clase_id)s, %(fecha_pago)s)
             """, data)
             self.conn.commit()
+
+
+        # Actualizar a "false" el campo familiar en la tabla Alumnos.
+        if not es_familiar:
+            with self.conn.cursor() as cur:
+                cur.execute("""
+                    UPDATE "Alumnos" SET
+                    familiar = false 
+                    WHERE alumno_id = %(alumno_id)s
+                """, {"alumno_id": alumno_id})
+                self.conn.commit()
+
+
 
 
     def delete(self, pago_id: int):
@@ -145,6 +157,11 @@ class Pagos():
 
 
     def pagos_by_alumnos(self, alumno_id):
+        """
+        Obtiene todos los registros de la Tabla "Pagos" para un alumno específico
+        :param alumno_id:
+        :return:
+        """
         with self.conn.cursor() as cur:
             cur.execute(
                 """
