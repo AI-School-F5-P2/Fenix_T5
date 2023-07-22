@@ -58,11 +58,12 @@ class Alumnos():
                 apellidos_alumno = %(apellidos_alumno)s,
                 edad_alumno = %(edad_alumno)s,
                 telefono_alumno = %(telefono_alumno)s,
-                email_alumno = %(email_alumno)s
+                email_alumno = %(email_alumno)s,
+                familiar = %(familiar)s
                 WHERE alumno_id = %(alumno_id)s
             """, {"nombre_alumno": update_data["nombre_alumno"], "apellidos_alumno": update_data["apellidos_alumno"],
                   "edad_alumno": update_data["edad_alumno"], "telefono_alumno": update_data["telefono_alumno"],
-                  "email_alumno": update_data["email_alumno"], "alumno_id": alumno_id})
+                  "email_alumno": update_data["email_alumno"], "familiar": update_data["familiar"], "alumno_id": alumno_id})
             self.conn.commit()
 
 

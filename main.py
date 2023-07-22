@@ -125,7 +125,7 @@ def delete(alumno_id: int):
     return {"message": f"Registro con alumno_id {alumno_id} borrado exitosamente"}
 
 @app.put("/alumnos/update/{alumno_id}")
-def update(alumno_id: int, updated_data: AlumnosUpdateSchema):
+def update(alumno_id: int, updated_data: AlumnosSchema):
     """
     Endpoint Update. Actualiza un registro específico de la tabla Alumnos
     :param alumno_id:
