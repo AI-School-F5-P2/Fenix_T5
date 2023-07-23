@@ -16,6 +16,7 @@ class Pagos():
             data = cur.fetchall()
             return data
 
+
     def insert(self, data):
         """
         CRUD CREATE. Inserta un registro en la tabla Pagos
@@ -38,7 +39,6 @@ class Pagos():
                     VALUES (%(alumno_id)s, %(clase_id)s)
                 """, {"alumno_id": alumno_id,"clase_id": clase_id})
             self.conn.commit()
-
 
 
         # Obtener el precio de la clase de la tabla Clases

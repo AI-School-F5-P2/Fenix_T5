@@ -30,7 +30,7 @@ class Clases():
                 self.conn.commit()
         except psycopg.Error as e:
             # En caso de error, deshacer cualquier cambio pendiente
-            connection.rollback()
+            self.conn.rollback()
             return {"message": f"Error al crear el registro de alumno: {e}"}
 
 
