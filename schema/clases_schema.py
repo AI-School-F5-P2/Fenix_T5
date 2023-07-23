@@ -8,3 +8,7 @@ class ClasesSchema(BaseModel):
     precio_clase: float
     pack: int
 
+class ClasesPorProfesor(BaseModel):
+    nombre_clase: str
+    nivel_clase: str
+    pack_clase: str

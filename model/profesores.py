@@ -59,6 +59,23 @@ class Profesores():
             self.conn.commit()
 
 
+    # Busca todas las clases que tiene un profesor dado
+    def clases_por_profesor(self, profesor_id: int):
+        """
+        Busca todas las clases que tiene un profesor dado
+        :param profesor_id:
+        :return:
+        """
+        with self.conn.cursor() as cur:
+            cur.execute("""
+                SELECT nombre_clase, nivel_clase, pack  FROM "Clases"
+                INNER JOIN "Profesores_clases" ON "Clases".clase_id = "Profesores_clases".clase_id
+                WHERE "Profesores_clases".profesor_id = %(profesor_id)s
+            """, {"profesor_id": profesor_id})
+            data = cur.fetchall()
+            return {"Clases_del_profesor": data}
+
+
     def __del__(self):
         """
         Cierra la base de datos

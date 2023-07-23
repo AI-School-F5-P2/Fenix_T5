@@ -72,4 +72,17 @@ def update(profesor_id: int, updated_data: ProfesoresSchema):
     return {"message": f"Registro con profesor_id {profesor_id} modificado exitosamente"}
 
 
-
+@routerprofesores.get("/clases/{profesor_id}")
+async def clases_profesores(profesor_id: int):
+    """
+    Endpoint. Busca y muestra todas las clases que tiene un profesor dado
+    :return
+    """
+    items = []
+    for data in profesores_instance.clases_por_profesor(profesor_id= profesor_id):
+        dictionary = {}
+        dictionary["nombre_clase"] = data[0]
+        dictionary["nivel_clase"] = data[1]
+        dictionary["pack_clase"] = data[2]
+        items.append(dictionary)
+    return items
