@@ -24,8 +24,8 @@ class Clases():
         try:
             with self.conn.cursor() as cur:
                 cur.execute("""
-                INSERT INTO "Clases"(nombre_clase, nivel_clase, precio_clase) 
-                VALUES (%(nombre_clase)s, %(nivel_clase)s, %(precio_clase)s)
+                INSERT INTO "Clases"(nombre_clase, nivel_clase, precio_clase, pack) 
+                VALUES (%(nombre_clase)s, %(nivel_clase)s, %(precio_clase)s, %(pack)s)
             """, data)
                 self.conn.commit()
         except psycopg.Error as e:
@@ -62,9 +62,11 @@ class Clases():
                 UPDATE "Clases" SET
                 nombre_clase = %(nombre_clase)s,
                 nivel_clase = %(nivel_clase)s,
-                precio_clase = %(precio_clase)s
+                precio_clase = %(precio_clase)s,
+                pack = %(pack)s
                 WHERE clase_id = %(clase_id)s
-            """, {"nombre_clase": update_data["nombre_clase"], "nivel_clase": update_data["nivel_clase"], "precio_clase": update_data["precio_clase"], "clase_id": clase_id})
+            """, {"nombre_clase": update_data["nombre_clase"], "nivel_clase": update_data["nivel_clase"],
+                  "precio_clase": update_data["precio_clase"], "pack": update_data["pack"], "clase_id": clase_id})
             self.conn.commit()
 
 

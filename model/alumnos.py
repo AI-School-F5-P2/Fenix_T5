@@ -23,8 +23,8 @@ class Alumnos():
         """
         with self.conn.cursor() as cur:
             cur.execute("""
-                INSERT INTO "Alumnos"(nombre_alumno, apellidos_alumno, edad_alumno, telefono_alumno, email_alumno, familiar_alumno) 
-                VALUES (%(nombre_alumno)s, %(apellidos_alumno)s, %(edad_alumno)s, %(telefono_alumno)s, %(email_alumno)s, %(familiar_alumno)s )
+                INSERT INTO "Alumnos"(nombre_alumno, apellidos_alumno, edad_alumno, telefono_alumno, email_alumno, familiar) 
+                VALUES (%(nombre_alumno)s, %(apellidos_alumno)s, %(edad_alumno)s, %(telefono_alumno)s, %(email_alumno)s, %(familiar)s )
             """, data)
             self.conn.commit()
 

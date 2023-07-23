@@ -1,21 +1,8 @@
 from fastapi import FastAPI
 from starlette.responses import RedirectResponse
-#from typing import List
+
 
 from db_connection import DataBaseConnection
-# from schema.clases_schema import *
-# from schema.alumnos_schema import *
-# from schema.alumnos_clases_schema import *
-# from schema.profesores_schema import *
-# from schema.profesores_clases_schema import *
-# from schema.pagos_schema import *
-
-# from model.clases import Clases
-# from model.alumnos import Alumnos
-# from model.alumnos_clases import AlumnosClases
-# from model.profesores import Profesores
-# from model.profesores_clases import ProfesoresClases
-# from model.pagos import Pagos
 
 #objetos de apirouter a incluir
 from routers.clases import main_clase as mainclase
@@ -40,24 +27,8 @@ app.include_router(main_pago.routerpagos)
 
 
 #route index para redireccionar a la documentacion
-@app.get("/")
-async def main():
-    return RedirectResponse(url="/docs/")
-
-# conn = DataBaseConnection()
-#
-# # Creación de instancias
-# clases_instance = Clases()
-# alumnos_instance = Alumnos()
-# alumnos_clases_instance = AlumnosClases()
-# profesores_instance = Profesores()
-# profesores_clases_instance = ProfesoresClases()
-# pagos_instance = Pagos()
+# @app.get("/")
+# async def main():
+#     return RedirectResponse(url="/docs/")
 
 
-
-
-
-
-# if __name__ == "__main__":
-#     uvicorn.run(app, host="127.0.0.1", port=8000, reload=True)
