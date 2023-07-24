@@ -1,6 +1,11 @@
 import psycopg
 from psycopg import Error
 from db_connection import DataBaseConnection
+from logger import setup_logger
+
+# Configurar el logger
+logger = setup_logger('fenix.log')
+
 
 class Pagos():
     def __init__(self):
@@ -11,6 +16,7 @@ class Pagos():
         CRUD READ. Lee todos los registros de la tabla Pagos
         :return:
         """
+        logger.info(msg="Lee todos los registros de la tabla Pagos")
         with self.conn.cursor() as cur:
             cur.execute("""SELECT * FROM "Pagos" """)
             data = cur.fetchall()
@@ -24,14 +30,17 @@ class Pagos():
         :return:
         """
 
-        #importe_pagado = data["importe_pagado"]
+
         alumno_id = data["alumno_id"]
         clase_id = data["clase_id"]
         fecha_pago = data["fecha_pago"]
-        total_pagado = data["total_pagado"]
+        #total_pagado = data["total_pagado"]
 
 
         # Insertar alumno_id y clase_id en Tabla Alumnos_clases
+        # Necesario ya que es una tabla intermmedia y los dos
+        # campos que tiene, alumno_id y clase_id deben estar presentes
+        # antes de poder insertar un campo en la Tabla Pagos
 
         with self.conn.cursor() as cur:
             cur.execute(
@@ -188,9 +197,10 @@ class Pagos():
 
     def total_pagado_alumno(self, alumno_id):
         """
-        Función que calcula rl total pagado por el alumno
+        Función que calcula el total pagado por el alumno
         :return:
         """
+        logger.info(f"Llamada a la función total_pagado_alumno con alumno_id={alumno_id}")
         with self.conn.cursor() as cur:
             cur.execute(
                 """
@@ -200,6 +210,7 @@ class Pagos():
                    GROUP BY alumno_id              
                 """, {"alumno_id": alumno_id})
             data = cur.fetchall()
+            logger.info(f"Resultado total_pagado_alumno: {data}")
             return data
 
 
