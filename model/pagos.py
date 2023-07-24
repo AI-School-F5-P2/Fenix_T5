@@ -78,7 +78,7 @@ class Pagos():
                 """, {"alumno_id": alumno_id})
             es_familiar = cur.fetchone()[0]
 
-
+        # Se calculan los descuentos
         if tipo_pack in [pack for _, pack, _ in clases_por_pack] and tipo_pack != 0:
             clases_inscritas_pack = clases_inscritas_pack = next(clases for _, pack, clases in clases_por_pack if pack == tipo_pack)
             clases_inscritas_pack += 1
