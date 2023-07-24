@@ -31,7 +31,7 @@
 
 Para abordar este problema, nuestro equipo de desarrollo ha sido contratado por Mar, la dueña de la escuela, para implementar una base de datos de tipo SQL y una API tipo REST. Esta solución permitirá almacenar de manera eficiente y segura la información de los alumnos, las clases y los profesores, lo que simplificará la gestión de datos y facilitará el proceso de inscripción, modificación de clases, seguimiento de pagos y otras operaciones relacionadas con la escuela.</p>
 
-  <h2>Tecnologías Utilizadas</h2>
+  <h2>💻 Tecnologías Utilizadas</h2>
   <ul>
     <li>PostgreSQL</li>
     <li>pgAdmin</li>
@@ -81,13 +81,13 @@ La API REST que desarrollaremos permitirá realizar las siguientes operaciones:
         Inscribir un alumno a una clase específica.
         Asignar un profesor a una clase determinada.
 
-  <h2>Instalación</h2>
+  <h2>🔧 Instalación</h2>
   <p>Para utilizar este proyecto, sigue los siguientes pasos:</p>
   <ol>
-    <li>Clona este repositorio en tu máquina local.</li>
-    <code>git clone https://github.com/tu_usuario/tu_proyecto.git</code>
-    <code>cd tu_proyecto</code>
-    <li>Crea un entorno virtual (opcional pero recomendado) e actívalo.</li>
+    <li>Si dispones de GIT clona este repositorio en tu máquina local.</li>
+    <code>git clone https://github.com/AI-School-F5-P2/Fenix_T5.git</code><br>
+    <code>cd Nombre_tu_proyecto</code>
+    <li>(opcional pero recomendado) Crea un entorno virtual e actívalo.</li>
     <code>python -m venv venv</code>
     <code># En Windows:</code>
     <code>venv\Scripts\activate</code>
