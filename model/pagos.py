@@ -20,7 +20,8 @@ class Pagos():
 
     def insert(self, data):
         """
-        CRUD CREATE. Inserta un registro en la tabla Pagos
+        CRUD CREATE. Inserta un registro en la tabla Pagos.
+        Antes de insertar el registro, calcula el descuento que le corresponde al alumno
         :param data:
         :return:
         """
@@ -63,6 +64,8 @@ class Pagos():
             tipo_pack = cur.fetchone()[0]
 
         # Consulta para obtener el número de clases inscritas para el alumno por pack
+        # clases_por_pack es una lista de tuplas que contiene los valores de alumno_id, pack y clases_inscritas
+        # [(alumno_id, pack,clases_inscritas)]
         with self.conn.cursor() as cur:
             cur.execute(
                 """
@@ -144,6 +147,32 @@ class Pagos():
         :param pago_id:
         :return:
         """
+        # Hay que borrar primero el registro correspondiente en la tabla
+        # Alumnos_clases
+
+        # Se selecciona el alumno_id y clase_id para saber que registro se va a borrar
+        with self.conn.cursor() as cur:
+            cur.execute(
+                """
+                    SELECT alumno_id, clase_id FROM "Pagos" 
+                    WHERE pago_id = %(pago_id)s
+                """, {"pago_id": pago_id}) # Combinamos los parámetros en un solo diccionario
+            # Obtenemos los valores encontrados de los campos alumno_id y clase_id
+            result = cur.fetchone()
+
+            # Guardamos los valores encontrados en variables separadas
+            alumno_id_encontrado = result[0]  # Primer elemento del resultado es alumno_id
+            clase_id_encontrado = result[1]  # Segundo elemento del resultado es clase_id
+
+
+        # Se procede a borrar el registro en la tabla Alumnos_clases
+        with self.conn.cursor() as cur:
+            cur.execute("""
+                    DELETE FROM "Alumnos_clases" WHERE alumno_id = %(alumno_id)s AND clase_id = %(clase_id)s
+                """, {"alumno_id": alumno_id_encontrado, "clase_id": clase_id_encontrado})
+            self.conn.commit()
+
+        # Ahora sí se puede borrar el registr en la tabla Pagos
         with self.conn.cursor() as cur:
             cur.execute("""
                     DELETE FROM "Pagos" WHERE pago_id = %(pago_id)s
