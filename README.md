@@ -43,15 +43,17 @@ Para abordar este problema, nuestro equipo de desarrollo ha sido contratado por 
 
 Se ha diseñado una base de datos con cinco tablas dentro del esquema público:
 
-    Tabla "Alumnos": Almacena los datos de los alumnos, incluyendo su identificación (alumno_id), nombre (nombre_alumno), apellidos (apellidos_alumno), teléfono (telefono_alumno) y correo electrónico (email_alumno).
+    "Alumnos": Almacena los datos de los alumnos, incluyendo su identificación (alumno_id), nombre (nombre_alumno), apellidos (apellidos_alumno), teléfono (telefono_alumno) y correo electrónico (email_alumno).
 
-    Tabla "Alumnos_clases": Establece la relación entre alumnos y las clases a las que están inscritos. Contiene el identificador del alumno (alumno_id) y el identificador de la clase (clase_id).
+    "Alumnos_clases": Establece la relación entre alumnos y las clases a las que están inscritos. Contiene el identificador del alumno (alumno_id) y el identificador de la clase (clase_id).
 
-    Tabla "Clases": Guarda la información de las clases ofrecidas en la escuela, incluyendo su identificación (clase_id), nombre (nombre_clase), nivel (nivel_clase) y precio (precio_clase).
+    "Clases": Guarda la información de las clases ofrecidas en la escuela, incluyendo su identificación (clase_id), nombre (nombre_clase), nivel (nivel_clase) y precio (precio_clase).
 
-    Tabla "Profesores_clases": Define la relación entre los profesores y las clases que imparten. Contiene el identificador del profesor (profesor_id) y el identificador de la clase (clase_id).
+    "Profesores_clases": Define la relación entre los profesores y las clases que imparten. Contiene el identificador del profesor (profesor_id) y el identificador de la clase (clase_id).
 
-    Tabla "Profesores": Almacena los datos de los profesores que trabajan en la escuela, incluyendo su identificación (profesor_id) y nombre (nombre_profesor).
+    "Profesores": Almacena los datos de los profesores que trabajan en la escuela, incluyendo su identificación (profesor_id) y nombre (nombre_profesor).
+
+    "Pagos": Proporciona los pagos realizados con identificiación (pagos_id) por los alumnos (alumno_id) en cada clase (clase_id) y el importe que han pagado (importe_pagado)
 
 Funcionalidades de la API
 
