@@ -116,7 +116,11 @@ Para abordar este problema, nuestro equipo de desarrollo ha sido contratado por 
   <h2>💡 Contribuciones</h2>
   <p>Las contribuciones son bienvenidas. Si encuentras algún error o tienes mejoras, por favor, abre un issue o envía un pull request.<br> <br>
   Los actuales contribuidores de este proyecto son:<br>
-  -[Sandra Gomez](https://github.com/sgomezp)</p>
+  -[Sandra Gomez]: https://github.com/sgomezp <br>
+  -[Victoria Moraleda]: https://github.com/Victoria-moraleda <br>
+  -[Gabriel Arjona]: https://github.com/GabrielArjona <br>
+  -[Miguel Mendoza]: https://github.com/migue29 <br>
+  -[Rodrigo Lendinez]: https://github.com/BlanckSpeed <br>
 
   <h2>📄 Licencia</h2>
   <p>Este proyecto está bajo la Licencia MIT - consulta el archivo <code>LICENSE</code> para más detalles.</p>
