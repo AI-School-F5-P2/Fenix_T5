@@ -32,7 +32,7 @@
 Para abordar este problema, nuestro equipo de desarrollo ha sido contratado por Mar, la dueña de la escuela, para implementar una base de datos de tipo SQL y una API tipo REST. Esta solución permitirá almacenar de manera eficiente y segura la información de los alumnos, las clases y los profesores, lo que simplificará la gestión de datos y facilitará el proceso de inscripción, modificación de clases, seguimiento de pagos y otras operaciones relacionadas con la escuela.</p>
 </samp>
 
-  <h2>💻🛠️ Tecnologías Utilizadas</h2>
+  <h2>💻 Tecnologías Utilizadas</h2>
   <ul>
     <li>PostgreSQL</li>
     <li>pgAdmin</li>
@@ -40,7 +40,7 @@ Para abordar este problema, nuestro equipo de desarrollo ha sido contratado por 
     <li>Uvicorn</li>
   </ul>
 
-  <h2>Estructura de la Base de Datos</h2>
+  <h2>🖇️ Estructura de la Base de Datos</h2>
 
   Se ha diseñado una base de datos con cinco tablas dentro del esquema público:
 
@@ -56,7 +56,7 @@ Para abordar este problema, nuestro equipo de desarrollo ha sido contratado por 
 
     "Pagos": Proporciona los pagos realizados con identificiación (pagos_id) por los alumnos (alumno_id) en cada clase (clase_id) y el importe que han pagado (importe_pagado)
 
-  <h2>Funcionalidades de la API</h2>
+  <h2>🛠️ Funcionalidades de la API</h2>
 
   La API REST que desarrollaremos permitirá realizar las siguientes operaciones:
 
@@ -95,7 +95,7 @@ Para abordar este problema, nuestro equipo de desarrollo ha sido contratado por 
     <code>pip install -r requirements.txt</code><br>
   </ol>
 
-  <h2>Configuración de la Base de Datos</h2>
+  <h2>📋 Configuración de la Base de Datos</h2>
   <p>Asegúrate de tener PostgreSQL instalado en tu máquina.</p>
   <p>Abre pgAdmin y crea una nueva base de datos para tu proyecto.</p>
   <p>Ejecuta los scripts SQL proporcionados para crear las tablas y relaciones necesarias.</p>
