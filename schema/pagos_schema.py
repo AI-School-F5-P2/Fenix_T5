@@ -8,4 +8,3 @@ class PagosSchema(BaseModel):
     fecha_pago: datetime.date
 
 
-

@@ -28,6 +28,7 @@ class Pagos():
         alumno_id = data["alumno_id"]
         clase_id = data["clase_id"]
         fecha_pago = data["fecha_pago"]
+        total_pagado = data["total_pagado"]
 
 
         # Insertar alumno_id y clase_id en Tabla Alumnos_clases
@@ -183,14 +184,23 @@ class Pagos():
                 """, {"alumno_id": alumno_id})
             data = cur.fetchall()
             return data
-            self.conn.commit()
 
-    def calculo_descuento_pack(self):
+
+    def total_pagado_alumno(self, alumno_id):
         """
-        Función que calcula el descuento por packs
+        Función que calcula rl total pagado por el alumno
         :return:
         """
-        pass
+        with self.conn.cursor() as cur:
+            cur.execute(
+                """
+                   SELECT alumno_id, SUM(importe_pagado) AS total_pagado
+                   FROM "Pagos"
+                   WHERE alumno_id = %(alumno_id)s  
+                   GROUP BY alumno_id              
+                """, {"alumno_id": alumno_id})
+            data = cur.fetchall()
+            return data
 
 
     def __del__(self):

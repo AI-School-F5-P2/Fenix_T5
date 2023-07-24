@@ -91,3 +91,12 @@ def get_pagos_by_alumno_id(alumno_id: int):
     return items
 
 
+# Obtiene el total que ha pagado un alumno
+@routerpagos.get("/alumno/importe_total/{alumno_id}")
+def get_total_pagado_por_alumno(alumno_id: int):
+    """
+        Obtiene la suma total que ha pagado un alumno.
+    """
+    total_pagado = pagos_instance.total_pagado_alumno(alumno_id)
+    return total_pagado
+
