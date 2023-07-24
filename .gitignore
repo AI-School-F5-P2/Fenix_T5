@@ -50,5 +50,9 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
 #INFO VICTORIA
 env_vic
+
+#INFO MIGUEL
+fenix_venv
