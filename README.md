@@ -17,7 +17,7 @@
         ~ Fenix ~
       </b>
     </samp>
-  </p>
+
 <p align="right"><strong><samp>」</samp></strong></p>
 
 <br>
@@ -38,12 +38,12 @@ Para abordar este problema, nuestro equipo de desarrollo ha sido contratado por 
     <li>Uvicorn</li>
   </ul>
 
-  Estructura de la Base de Datos
+  <h2>Estructura de la Base de Datos</h2>
 
-Se ha diseñado una base de datos con cinco tablas dentro del esquema público:
+  Se ha diseñado una base de datos con cinco tablas dentro del esquema público:
 
     "Alumnos": Almacena los datos de los alumnos, incluyendo su identificación (alumno_id), nombre (nombre_alumno), apellidos (apellidos_alumno), teléfono (telefono_alumno) y correo electrónico (email_alumno).
-
+    
     "Alumnos_clases": Establece la relación entre alumnos y las clases a las que están inscritos. Contiene el identificador del alumno (alumno_id) y el identificador de la clase (clase_id).
 
     "Clases": Guarda la información de las clases ofrecidas en la escuela, incluyendo su identificación (clase_id), nombre (nombre_clase), nivel (nivel_clase) y precio (precio_clase).
@@ -54,9 +54,9 @@ Se ha diseñado una base de datos con cinco tablas dentro del esquema público:
 
     "Pagos": Proporciona los pagos realizados con identificiación (pagos_id) por los alumnos (alumno_id) en cada clase (clase_id) y el importe que han pagado (importe_pagado)
 
-Funcionalidades de la API
+  <h2>Funcionalidades de la API</h2>
 
-La API REST que desarrollaremos permitirá realizar las siguientes operaciones:
+  La API REST que desarrollaremos permitirá realizar las siguientes operaciones:
 
     Gestión de Alumnos:
         Obtener la lista de todos los alumnos registrados.
@@ -85,14 +85,12 @@ La API REST que desarrollaremos permitirá realizar las siguientes operaciones:
   <ol>
     <li>Si dispones de GIT clona este repositorio en tu máquina local.</li>
     <code>git clone https://github.com/AI-School-F5-P2/Fenix_T5.git</code><br>
-    <code>cd Nombre_tu_proyecto</code>
+    <code>cd Nombre_tu_proyecto</code><br>
     <li>(opcional pero recomendado) Crea un entorno virtual e actívalo.</li>
-    <code>python -m venv venv</code>
-    <code># En Windows:</code>
-    <code>venv\Scripts\activate</code>
-    <code># En macOS/Linux:</code>
-    <code>source venv/bin/activate</code>
-    <li>Instala las dependencias desde el archivo <code>requirements.txt</code>.</li>
+    <code>python -m venv venv</code><br>
+    En Windows: <code>venv\Scripts\activate</code><br>
+    En macOS/Linux: <code>source venv/bin/activate</code>
+    <li>Instala las dependencias desde el archivo <code>requirements.txt</code>.</li><br>
     <code>pip install -r requirements.txt</code>
   </ol>
 
@@ -122,4 +120,5 @@ La API REST que desarrollaremos permitirá realizar las siguientes operaciones:
 
   <h2>📄 Licencia</h2>
   <p>Este proyecto está bajo la Licencia MIT - consulta el archivo <code>LICENSE</code> para más detalles.</p>
+
 </body>
