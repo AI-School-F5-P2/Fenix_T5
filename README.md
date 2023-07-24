@@ -104,7 +104,7 @@ Para abordar este problema, nuestro equipo de desarrollo ha sido contratado por 
   <ol>
     <li>Para iniciar el servidor FastAPI, ejecuta el siguiente comando:</li>
     <code>uvicorn app.main:app --reload</code>
-    <li>Abre tu navegador y visita <code>http://localhost:8000</code> para ver la interfaz de tu proyecto.</li>
+    <li>Abre tu navegador y visita <code>http://localhost:8000/docs</code> para ver la interfaz de tu proyecto.</li>
   </ol>
 
 <br>
@@ -114,7 +114,7 @@ Para abordar este problema, nuestro equipo de desarrollo ha sido contratado por 
 <h2></h2><br>
 
   <h2>💡 Contribuciones</h2>
-  <p>Las contribuciones son bienvenidas. Si encuentras algún error o tienes mejoras, por favor, abre un issue o envía un pull request.<br> <br>
+  <p>Las contribuciones son bienvenidas. Si encuentras algún error o tienes mejoras, por favor, abre un issue o envía un pull request.<br> 
   Los actuales contribuidores de este proyecto son:<br>
   -[Sandra Gomez]: https://github.com/sgomezp <br>
   -[Victoria Moraleda]: https://github.com/Victoria-moraleda <br>
