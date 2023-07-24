@@ -23,29 +23,7 @@
 <br>
 
 </div>
-<head>
-  <title>Fenix_T5</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 20px;
-    }
-    h1 {
-      text-align: center;
-    }
-    ul {
-      list-style-type: disc;
-      padding-left: 20px;
-    }
-    code {
-      background-color: #f0f0f0;
-      padding: 2px;
-    }
-  </style>
-</head>
+
 <body>
   <h1>Fenix Team 5</h1>
 
