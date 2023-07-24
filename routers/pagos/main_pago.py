@@ -3,6 +3,10 @@ from typing import List
 from schema.pagos_schema import *
 from model.pagos import Pagos
 from db_connection import DataBaseConnection
+from logger_api import setup_logger
+
+# Configurar el logger
+logger = setup_logger('fenix.log')
 
 conn = DataBaseConnection()
 
@@ -25,6 +29,7 @@ async def root_pagos():
     Endpoint Read. Lee todos los resgistros de la tabla Pagos
     :return
     """
+    logger.info(msg="Lee todos los registros de la tabla Pagos")
     items = []
     for data in pagos_instance.read_all_pagos():
         dictionary = {}
@@ -45,6 +50,7 @@ def insert(pago_data: PagosSchema):
     :param profesor_data:PagosSchema
     :return:
     """
+    logger.info(msg="Crea un registro en la tabla Pagos")
     data = pago_data.dict()
     pagos_instance.insert(data)
     return {"message": f"Registro añadido exitosamente"}
@@ -57,6 +63,7 @@ def delete(pago_id: int):
     :param pago_id:
     :return:
     """
+    logger.info(msg=f"Borra el registro {pago_id} de la tabla Pagos")
     pagos_instance.delete(pago_id)
     return {"message": f"Registro con pago_id {pago_id} borrado exitosamente"}
 
@@ -70,6 +77,7 @@ def update(pago_id: int, updated_data: PagosSchema):
     :param updated_data: PagosSchema
     :return:
     """
+    logger.info(msg=f"Actualiza el registro {pago_id} de la tabla Pagos")
     pagos_instance.update(pago_id, updated_data)
     return {"message": f"Registro con pago_id {pago_id} modificado exitosamente"}
 
@@ -80,6 +88,7 @@ def get_pagos_by_alumno_id(alumno_id: int):
     """
         Obtiene todos los registros de la tabla Pagos para un alumno_id dado.
     """
+    logger.info(msg=f"Obtiene todos los pagos del alumno {pago_id} ")
     items = []
     for data in pagos_instance.pagos_by_alumnos(alumno_id):
         dictionary = {}
@@ -97,6 +106,7 @@ def get_total_pagado_por_alumno(alumno_id: int):
     """
         Obtiene la suma total que ha pagado un alumno.
     """
+    logger.info(msg=f"Obtiene la suma total que ha pagado un alumno {alumno_id} ")
     total_pagado = pagos_instance.total_pagado_alumno(alumno_id)
     return total_pagado
 

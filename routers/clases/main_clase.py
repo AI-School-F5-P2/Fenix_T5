@@ -2,17 +2,22 @@ from fastapi import APIRouter
 from typing import List
 from schema.clases_schema import *
 from model.clases import Clases
+from logger_api import setup_logger
+
+# Configurar el logger
+logger = setup_logger('fenix.log')
 
 from db_connection import DataBaseConnection
 
 conn = DataBaseConnection()
+
+
 
 # Instancia de Clases()
 clases_instance = Clases()
 
 #objeto tipo APIRouter
 routerclase = APIRouter(prefix="/clases")
-
 
 
 #-----------------------------------------------------------------
@@ -26,6 +31,7 @@ async def root():
     Endpoint Read. Lee todos los resgistros de la tabla Clases
     :return
     """
+    logger.info(msg="Lee todos los registros de la tabla Clases")
     items = []
     for data in clases_instance.read_all_clases():
         dictionary = {}
@@ -46,6 +52,7 @@ def insert(clase_data: ClasesSchema):
     :param clase_data:ClasesSchema
     :return:
     """
+    logger.info(msg="Endpoint insert. Crea un registro en la tabla Clases")
     data = clase_data.dict()
     clases_instance.insert(data)
     return {"message": f"Registro añadido exitosamente"}
@@ -58,6 +65,7 @@ def delete(clase_id: int):
     :param clase_id:
     :return:
     """
+    logger.info(msg=f"Borra el registro {clase_id} en la tabla Clases")
     clases_instance.delete(clase_id)
     return {"message": f"Registro con clase_id {clase_id} borrado exitosamente"}
 
@@ -70,6 +78,7 @@ def update(clase_id: int, updated_data: ClasesSchema):
     :param updated_data:
     :return:
     """
+    logger.info(msg=f"Actualiza el registro { clase_id} en la tabla Clases")
     clases_instance.update(clase_id, updated_data)
     return {"message": f"Registro con clase_id {clase_id} modificado exitosamente"}
 
@@ -81,6 +90,7 @@ async def clases_profesores(profesor_id: int):
     Endpoint. Busca y muestra todas las clases que tiene un profesor dado
     :return
     """
+    logger.info(msg=f"Muestra todas las clases que tiene el profesor: {profesor_id} en la tabla Clases")
     items = []
     for data in clases_instance.clases_por_profesor(profesor_id= profesor_id):
         dictionary = {}

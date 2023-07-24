@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from starlette.responses import RedirectResponse
-from logger import setup_logger
+
 
 from db_connection import DataBaseConnection
 
@@ -12,8 +12,6 @@ from routers.profesores import main_profesor as main_profesor
 from routers.profesores_clases import main_profesor_clase as main_profesores_clase
 from routers.pagos import main_pago as main_pago
 
-# Configurar el logger
-#logger = setup_logger('fenix.log')
 
 # Se crea objeto FastAPI
 app = FastAPI(title="FastApi Danza Fénix",

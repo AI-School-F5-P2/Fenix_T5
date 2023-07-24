@@ -1,10 +1,6 @@
 import psycopg
 from psycopg import Error
 from db_connection import DataBaseConnection
-from logger import setup_logger
-
-# Configurar el logger
-logger = setup_logger('fenix.log')
 
 
 class Pagos():
@@ -16,7 +12,6 @@ class Pagos():
         CRUD READ. Lee todos los registros de la tabla Pagos
         :return:
         """
-        logger.info(msg="Lee todos los registros de la tabla Pagos")
         with self.conn.cursor() as cur:
             cur.execute("""SELECT * FROM "Pagos" """)
             data = cur.fetchall()
@@ -34,7 +29,7 @@ class Pagos():
         alumno_id = data["alumno_id"]
         clase_id = data["clase_id"]
         fecha_pago = data["fecha_pago"]
-        #total_pagado = data["total_pagado"]
+
 
 
         # Insertar alumno_id y clase_id en Tabla Alumnos_clases
@@ -200,7 +195,6 @@ class Pagos():
         Función que calcula el total pagado por el alumno
         :return:
         """
-        logger.info(f"Llamada a la función total_pagado_alumno con alumno_id={alumno_id}")
         with self.conn.cursor() as cur:
             cur.execute(
                 """
@@ -210,7 +204,6 @@ class Pagos():
                    GROUP BY alumno_id              
                 """, {"alumno_id": alumno_id})
             data = cur.fetchall()
-            logger.info(f"Resultado total_pagado_alumno: {data}")
             return data
 
 
