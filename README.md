@@ -25,13 +25,12 @@
 </div>
 
 <body>
-  <h1>Fenix Team 5</h1>
-
+  <h1>❄️ Fenix Team 5</h1>
   <p>Este proyecto tiene como objetivo proporcionar una solución digital y escalable a la gestión de alumnos y cuentas de la escuela de baile "Danza Fénix". La escuela ha experimentado un éxito inesperado, lo que ha llevado a un aumento en la cantidad de alumnos y clases ofrecidas. Sin embargo, la gestión actual se realiza en papel y bolígrafo, lo que resulta en un trabajo arduo, propenso a errores y difícil de mantener.
 
 Para abordar este problema, nuestro equipo de desarrollo ha sido contratado por Mar, la dueña de la escuela, para implementar una base de datos de tipo SQL y una API tipo REST. Esta solución permitirá almacenar de manera eficiente y segura la información de los alumnos, las clases y los profesores, lo que simplificará la gestión de datos y facilitará el proceso de inscripción, modificación de clases, seguimiento de pagos y otras operaciones relacionadas con la escuela.</p>
 
-  <h2>💻 Tecnologías Utilizadas</h2>
+  <h2>💻🛠️ Tecnologías Utilizadas</h2>
   <ul>
     <li>PostgreSQL</li>
     <li>pgAdmin</li>
@@ -102,7 +101,7 @@ La API REST que desarrollaremos permitirá realizar las siguientes operaciones:
   <p>Abre pgAdmin y crea una nueva base de datos para tu proyecto.</p>
   <p>Ejecuta los scripts SQL proporcionados para crear las tablas y relaciones necesarias.</p>
 
-  <h2>Ejecutar el Servidor</h2>
+  <h2>⚙️ Ejecutar el Servidor</h2>
   <ol>
     <li>Para iniciar el servidor FastAPI, ejecuta el siguiente comando:</li>
     <code>uvicorn app.main:app --reload</code>
