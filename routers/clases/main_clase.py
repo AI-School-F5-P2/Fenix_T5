@@ -3,6 +3,7 @@ from typing import List
 from schema.clases_schema import *
 from model.clases import Clases
 from logger_api import setup_logger
+import logging
 
 # Configurar el logger
 logger = setup_logger('fenix.log')

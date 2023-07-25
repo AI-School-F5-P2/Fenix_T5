@@ -88,7 +88,7 @@ def get_pagos_by_alumno_id(alumno_id: int):
     """
         Obtiene todos los registros de la tabla Pagos para un alumno_id dado.
     """
-    logger.info(msg=f"Obtiene todos los pagos del alumno {pago_id} ")
+    logger.info(msg=f"Obtiene todos los pagos del alumno {alumno_id} ")
     items = []
     for data in pagos_instance.pagos_by_alumnos(alumno_id):
         dictionary = {}
