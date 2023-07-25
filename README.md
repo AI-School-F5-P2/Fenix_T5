@@ -128,5 +128,5 @@ Para abordar este problema, nuestro equipo de desarrollo ha sido contratado por 
   
   <h2>📄 Licencia</h2>
   <p>Este proyecto está bajo la Licencia MIT - consulta el archivo <code>LICENSE</code> para más detalles.</p>
-
+  <a href="#license"><img src="https://img.shields.io/github/license/sourcerer-io/hall-of-fame.svg?colorB=ff0000"></a>
 </body>
