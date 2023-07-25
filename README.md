@@ -117,33 +117,13 @@ Para abordar este problema, nuestro equipo de desarrollo ha sido contratado por 
   <h2>💡 Contribuciones</h2>
   <p>Las contribuciones son bienvenidas. Si encuentras algún error o tienes mejoras, por favor, abre un issue o envía un pull request.</p>
   <p>Los actuales contribuidores de este proyecto son:</p>
-<ul>
-  <li>
-    <a href="https://github.com/sgomezp">
-      <img src="https://github.com/sgomezp.png" width="50" alt="Sandra Gomez">
-    </a> Sandra Gómez
-  </li>
-  <li>
-    <a href="https://github.com/Victoria-moraleda">
-      <img src="https://github.com/Victoria-moraleda.png" width="50" alt="Victoria Moraleda">
-    </a> Victoria Moraleda
-  </li>
-  <li>
-    <a href="https://github.com/GabrielArjona">
-      <img src="https://github.com/GabrielArjona.png" width="50" alt="Gabriel Arjona">
-    </a> Gabriel Arjona
-  </li>
-  <li>
-    <a href="https://github.com/migue29">
-      <img src="https://github.com/migue29.png" width="50" alt="Miguel Mendoza">
-    </a> Miguel Mendoza
-  </li>
-  <li>
-    <a href="https://github.com/BlanckSpeed">
-      <img src="https://github.com/BlanckSpeed.png" width="50" alt="Rodrigo Lendinez">
-    </a> Rodrigo Lendinez
-  </li>
-</ul>
+
+<!-- Lista de contribuidores con iconos y enlaces -->
+- [<img src="https://github.com/sgomezp.png" width="50" alt="Sandra Gomez"> Sandra Gómez](https://github.com/sgomezp)
+- [<img src="https://github.com/Victoria-moraleda.png" width="50" alt="Victoria Moraleda"> Victoria Moraleda](https://github.com/Victoria-moraleda)
+- [<img src="https://github.com/GabrielArjona.png" width="50" alt="Gabriel Arjona"> Gabriel Arjona](https://github.com/GabrielArjona)
+- [<img src="https://github.com/migue29.png" width="50" alt="Miguel Mendoza"> Miguel Mendoza](https://github.com/migue29)
+- [<img src="https://github.com/BlanckSpeed.png" width="50" alt="Rodrigo Lendinez"> Rodrigo Lendinez](https://github.com/BlanckSpeed)
 
   
   <h2>📄 Licencia</h2>
