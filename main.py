@@ -1,61 +1,35 @@
 from fastapi import FastAPI
+from starlette.responses import RedirectResponse
+
+
 from db_connection import DataBaseConnection
-from schema.clases_schema import *
-from model.clases import Clases
 
-app = FastAPI()
-conn = DataBaseConnection()
-clases_instance = Clases()
-
-@app.get("/")
-async def root():
-    """
-    Endpoint Read. Lee todos los resgistros de la tabla Clases
-    :return
-    """
-    items = []
-    for data in clases_instance.read_all_clases():
-        dictionary = {}
-        dictionary["clase_id"] = data[0]
-        dictionary["nombre_clase"] = data[1]
-        dictionary["nivel_clase"] = data[2]
-        dictionary["precio_clase"] = data[3]
-        items.append(dictionary)
-    return items
+#objetos de apirouter a incluir
+from routers.clases import main_clase as mainclase
+from routers.alumnos import main_alumno as main_alumnno
+from routers.alumnos_clases import main_alumno_clase as main_alumno_clase
+from routers.profesores import main_profesor as main_profesor
+from routers.profesores_clases import main_profesor_clase as main_profesores_clase
+from routers.pagos import main_pago as main_pago
 
 
-@app.post("/insert")
-def insert(clase_data: ClasesSchema):
-    """
-    Endpoint Create. Crea un registro en la tabla Clases
-    :param clase_data:
-    :return:
-    """
-    data = clase_data.dict()
-    data.pop("clase_id")
-    clases_instance.insert(data)
-    return {"message": f"Registro añadido exitosamente"}
+# Se crea objeto FastAPI
+app = FastAPI(title="FastApi Danza Fénix",
+              description="Simple rest-full api with postgreSQL",
+              version="1.0")
 
-@app.delete("/delete/{clase_id}")
-def delete(clase_id: int):
-    """
-    Endpoint Delete. Borra el registro específico de la tabla Clase
-    :param clase_id:
-    :return:
-    """
-    clases_instance.delete(clase_id)
-    return {"message": f"Registro con clase_id {clase_id} borrado exitosamente"}
+# Se incluyen los objetos de APIROUTER
+app.include_router(mainclase.routerclase)
+app.include_router(main_alumnno.routeralumno)
+app.include_router(main_alumno_clase.routeralumnos_clases)
+app.include_router(main_profesor.routerprofesores)
+app.include_router(main_profesores_clase.routerprofesores_clases)
+app.include_router(main_pago.routerpagos)
 
-@app.put("/update/{clase_id}")
-def update(clase_id: int, updated_data: UpdateClasesSchema):
-    """
-    Endpoint Update. Actualiza un registro específico de la tabla Clase
-    :param clase_id:
-    :param updated_data:
-    :return:
-    """
-    clases_instance.update(clase_id, updated_data)
-    return {"message": f"Registro con clase_id {clase_id} modificado exitosamente"}
 
+#route index para redireccionar a la documentacion
+# @app.get("/")
+# async def main():
+#     return RedirectResponse(url="/docs/")
 
 
