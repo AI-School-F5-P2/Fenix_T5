@@ -17,6 +17,9 @@
 
 <p align="right"><strong><samp>」</samp></strong></p>
 
+<p align="center">
+  <img src="https://github.com/AI-School-F5-P2/Fenix_T5/assets/131301013/a9709c2c-f254-4b5f-9b75-1e38be8e34f6" alt="Fenix" width="200" />
+</p>
 <br>
 
 </div>
@@ -30,12 +33,13 @@ Para abordar este problema, nuestro equipo de desarrollo ha sido contratado por 
 </samp>
 
   <h2>💻 Tecnologías Utilizadas</h2>
-  <ul>
-    <li>PostgreSQL</li>
-    <li>pgAdmin</li>
-    <li>FastAPI</li>
-    <li>Uvicorn</li>
-  </ul>
+<!-- Títulos con enlaces -->
+<p align="center">
+  <a href="https://www.postgresql.org/">PostgreSQL</a> |
+  <a href="https://www.pgadmin.org/">PgAdmin</a> |
+  <a href="https://fastapi.tiangolo.com/">FastAPI</a> |
+  <a href="https://www.uvicorn.org/">Uvicorn</a>
+</p>
 
   <h2>🖇️ Estructura de la Base de Datos</h2>
 
