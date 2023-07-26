@@ -43,19 +43,24 @@ Para abordar este problema, nuestro equipo de desarrollo ha sido contratado por 
 
   <h2>🖇️ Estructura de la Base de Datos</h2>
 
-  Se ha diseñado una base de datos con cinco tablas dentro del esquema público:
+  Se ha diseñado una base de datos con cinco tablas dentro del esquema público:<br>
+<h3>Alumnos:</h3>
+<p><samp>Almacena los datos de los alumnos, incluyendo su identificación (alumno_id), nombre (nombre_alumno), apellidos (apellidos_alumno), teléfono (telefono_alumno) y correo electrónico (email_alumno).</samp></p>
 
-    "Alumnos": Almacena los datos de los alumnos, incluyendo su identificación (alumno_id), nombre (nombre_alumno), apellidos (apellidos_alumno), teléfono (telefono_alumno) y correo electrónico (email_alumno).
-    
-    "Alumnos_clases": Establece la relación entre alumnos y las clases a las que están inscritos. Contiene el identificador del alumno (alumno_id) y el identificador de la clase (clase_id).
+<h3>Profesores:</h3>
+<p><samp>Almacena los datos de los profesores que trabajan en la escuela, incluyendo su identificación (profesor_id) y nombre (nombre_profesor).</samp></p>
 
-    "Clases": Guarda la información de las clases ofrecidas en la escuela, incluyendo su identificación (clase_id), nombre (nombre_clase), nivel (nivel_clase) y precio (precio_clase).
+<h3>Clases:</h3>
+<p><samp>Guarda la información de las clases ofrecidas en la escuela, incluyendo su identificación (clase_id), nombre (nombre_clase), nivel (nivel_clase) y precio (precio_clase).</samp></p>
 
-    "Profesores_clases": Define la relación entre los profesores y las clases que imparten. Contiene el identificador del profesor (profesor_id) y el identificador de la clase (clase_id).
+<h3>Alumnos_clases:</h3>
+<p><samp>Establece la relación entre alumnos y las clases a las que están inscritos. Contiene el identificador del alumno (alumno_id) y el identificador de la clase (clase_id).</samp></p>
 
-    "Profesores": Almacena los datos de los profesores que trabajan en la escuela, incluyendo su identificación (profesor_id) y nombre (nombre_profesor).
+<h3>Profesores_clases:</h3>
+<p><samp>Define la relación entre los profesores y las clases que imparten. Contiene el identificador del profesor (profesor_id) y el identificador de la clase (clase_id).</samp></p>
 
-    "Pagos": Proporciona los pagos realizados con identificiación (pagos_id) por los alumnos (alumno_id) en cada clase (clase_id) y el importe que han pagado (importe_pagado)
+<h3>Pagos:</h3>
+<p><samp>Proporciona los pagos realizados con identificiación (pagos_id) por los alumnos (alumno_id) en cada clase (clase_id) y el importe que han pagado (importe_pagado).</samp></p>
 
   <h2>🛠️ Funcionalidades de la API</h2>
 
@@ -66,18 +71,37 @@ Para abordar este problema, nuestro equipo de desarrollo ha sido contratado por 
         Agregar un nuevo alumno a la base de datos.
         Modificar los datos de un alumno existente.
         Eliminar un alumno de la base de datos.
-
-    Gestión de Clases:
-        Obtener la lista de todas las clases disponibles.
-        Agregar una nueva clase a la base de datos.
-        Modificar los detalles de una clase existente.
-        Eliminar una clase de la base de datos.
-
+        
     Gestión de Profesores:
         Obtener la lista de todos los profesores de la escuela.
         Agregar un nuevo profesor a la base de datos.
         Modificar los datos de un profesor existente.
         Eliminar un profesor de la base de datos.
+        
+    Gestión de Clases:
+        Obtener la lista de todas las clases disponibles.
+        Agregar una nueva clase a la base de datos.
+        Modificar los detalles de una clase existente.
+        Eliminar una clase de la base de datos.
+        (Visualizar clases impartidas por un profesor esfecífico)
+
+    Gestión de Alumnos_clases:
+        Obtener registro de todas las inscripciones de alumnos en clases.
+        Agregar un alumno a una clase específica de la base de datos.
+        Eliminar la inscripción de un alumno en una clase.
+
+    Gestión de Profesores_clases:
+        Obtener registro de todas las asignaciones de profesores a clases.
+        Agregar un profesor a una clase específica de la base de datos.
+        Eliminar la asignación de un profesor en una clase.
+
+    Gestión de Pagos
+        Obtener registro de los pagos realizados.
+        Agregar un nuevo pago realizado.
+        Modificar los detalles de un pago existente.
+        Eliminar un registro de un pago.
+        (Visualizar los pagos de un alumno específico.)
+        (Visualizar el importe total pagado por un alumno)
 
     Inscripción y Asignación:
         Inscribir un alumno a una clase específica.
@@ -87,19 +111,19 @@ Para abordar este problema, nuestro equipo de desarrollo ha sido contratado por 
   <p>Para utilizar este proyecto, sigue los siguientes pasos:</p>
   <ol>
     <li>Si dispones de GIT clona este repositorio en tu máquina local.</li>
-    <code>git clone https://github.com/AI-School-F5-P2/Fenix_T5.git</code> <code>cd Nombre_tu_proyecto</code><br>
+    <code>git clone https://github.com/AI-School-F5-P2/Fenix_T5.git</code> <code>cd Nombre_tu_proyecto</code><br><br>
     <li>(opcional pero recomendado) Crea un entorno virtual e actívalo.</li>
     <code>python -m venv venv</code><br>
     En Windows: <code>venv\Scripts\activate</code><br>
-    En macOS/Linux: <code>source venv/bin/activate</code>
+    En macOS/Linux: <code>source venv/bin/activate</code><br><br>
     <li>Instala las dependencias desde el archivo <code>requirements.txt</code>.</li>
     <code>pip install -r requirements.txt</code><br>
   </ol>
 
   <h2>📋 Configuración de la Base de Datos</h2>
-  <p>Asegúrate de tener PostgreSQL instalado en tu máquina.</p>
-  <p>Abre pgAdmin y crea una nueva base de datos para tu proyecto.</p>
-  <p>Ejecuta los scripts SQL proporcionados para crear las tablas y relaciones necesarias.</p>
+  <li>Asegúrate de tener PostgreSQL instalado en tu máquina y funcionando correctamente.</li>
+  <li>Abre pgAdmin y crea una nueva base de datos para tu proyecto, como en esta <a href="./UML_Relaciones.jpg">visualización</a> de un diagrama con tablas   relacionadas.</li>
+  <li>Ejecuta los scripts SQL proporcionados para crear las tablas y relaciones necesarias.</li>
 
   <h2>⚙️ Ejecutar el Servidor</h2>
   <ol>
