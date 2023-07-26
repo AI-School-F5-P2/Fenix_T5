@@ -54,8 +54,6 @@ class AlumnosClases():
             # Manejo de la excepción específica para errores al eliminar registros en la base de datos
             print("Error al eliminar el registro de la tabla Alumnos_clases:", e)
 
-
-
     def __del__(self):
         """
         Cierra la base de datos
