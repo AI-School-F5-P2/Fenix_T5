@@ -2,6 +2,10 @@ from fastapi import APIRouter
 from typing import List
 from schema.alumnos_schema import *
 from model.alumnos import Alumnos
+from logger_api import setup_logger
+
+# Configurar el logger
+logger = setup_logger('fenix.log')
 
 from db_connection import DataBaseConnection
 
@@ -25,6 +29,7 @@ async def root_alumnos():
     Endpoint Read. Lee todos los registros de la tabla Alumnos
     :return
     """
+    logger.info(msg="Lee todos los registros de la tabla Alumnos")
     items = []
     for data in alumnos_instance.read_all_alumnos():
         dictionary = {}
@@ -38,6 +43,7 @@ async def root_alumnos():
         items.append(dictionary)
     return items
 
+
 # Crea|Inserta un registro en la tabla Alumnos
 @routeralumno.post("/insert")
 def insert_alumnos(alumno_data: AlumnosSchema):
@@ -46,6 +52,7 @@ def insert_alumnos(alumno_data: AlumnosSchema):
     :param clase_data:AlumnosSchema
     :return:
     """
+    logger.info(msg="Crea un registro en la tabla Alumnos")
     data = alumno_data.dict()
     alumnos_instance.insert_alumno(data)
     return {"message": f"Registro añadido exitosamente"}
@@ -59,6 +66,7 @@ def delete(alumno_id: int):
     :param alumno_id:
     :return:
     """
+    logger.info(msg=f"Borra el alumno {alumno_id} de la tabla Alumnos")
     alumnos_instance.delete(alumno_id)
     return {"message": f"Registro con alumno_id {alumno_id} borrado exitosamente"}
 
@@ -72,6 +80,7 @@ def update(alumno_id: int, updated_data: AlumnosSchema):
     :param updated_data:
     :return:
     """
+    logger.info(msg=f"Actualiza el alumno {alumno_id} de la tabla Alumnos")
     alumnos_instance.update(alumno_id, updated_data)
     return {"message": f"Registro con alumno_id {alumno_id} modificado exitosamente"}
 

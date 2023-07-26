@@ -26,9 +26,10 @@ from routers.profesores import main_profesor as main_profesor
 from routers.profesores_clases import main_profesor_clase as main_profesores_clase
 from routers.pagos import main_pago as main_pago
 
+
 # Se crea objeto FastAPI
 app = FastAPI(title="FastApi Danza Fénix",
-              description="Simple rest-full api with postreSQL",
+              description="Simple rest-full api with postgreSQL",
               version="1.0")
 
 # Se incluyen los objetos de APIROUTER
