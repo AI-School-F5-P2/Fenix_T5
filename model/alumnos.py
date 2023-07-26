@@ -3,7 +3,7 @@ from db_connection import DataBaseConnection
 
 class Alumnos():
     def __init__(self):
-        self.conn = DataBaseConnection().get_connection()
+        self.conn = DataBaseConnection().get_connection()  # Obtiene la conexión de la clase DataBaseConnection
 
     def read_all_alumnos(self):
         """
@@ -37,10 +37,11 @@ class Alumnos():
             # Manejo de la excepción específica para errores al insertar registros en la base de datos
             print("Error al insertar el registro en la tabla Alumnos:", e)
 
+
     def delete(self, alumno_id: int):
         """
         CRUD DELETE. Borra un registro específico en la tabla Alumnos
-        :param alumno_id:
+        :param clase_id:
         :return:
         """
         try:
@@ -53,10 +54,11 @@ class Alumnos():
             # Manejo de la excepción específica para errores al eliminar registros en la base de datos
             print("Error al eliminar el registro de la tabla Alumnos:", e)
 
+
     def update(self, alumno_id: int, updated_data):
         """
         CRUD UPDATE. Actualiza un registro específico en la tabla Alumnos
-        :param alumno_id:
+        :param clase_id:
         :param updated_data:
         :return:
         """
@@ -86,6 +88,7 @@ class Alumnos():
         except psycopg.Error as e:
             # Manejo de la excepción específica para errores al actualizar registros en la base de datos
             print("Error al actualizar el registro de la tabla Alumnos:", e)
+
 
     def __del__(self):
         """

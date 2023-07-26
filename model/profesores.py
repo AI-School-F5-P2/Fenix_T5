@@ -3,7 +3,7 @@ from db_connection import DataBaseConnection
 
 class Profesores():
     def __init__(self):
-        self.conn = DataBaseConnection().get_connection()
+        self.conn = DataBaseConnection().get_connection()  # Obtiene la conexión de la clase DataBaseConnection
 
     def read_all_profesores(self):
         """
@@ -53,6 +53,7 @@ class Profesores():
             # Manejo de la excepción específica para errores al eliminar registros en la base de datos
             print("Error al eliminar el registro de la tabla Profesores:", e)
 
+
     def update(self, profesor_id: int, updated_data):
         """
         CRUD UPDATE. Actualiza un registro específico en la tabla Profesores
@@ -73,6 +74,9 @@ class Profesores():
         except psycopg.Error as e:
             # Manejo de la excepción específica para errores al actualizar registros en la base de datos
             print("Error al actualizar el registro de la tabla Profesores:", e)
+
+
+
 
     def __del__(self):
         """
