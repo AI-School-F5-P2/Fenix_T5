@@ -1,0 +1,6 @@
+26-07-2023 10:26:42 - INFO  main_alumno.py insert_alumnos 55 - Crea un registro en la tabla Alumnos
+26-07-2023 10:27:21 - INFO  main_alumno.py insert_alumnos 55 - Crea un registro en la tabla Alumnos
+26-07-2023 10:27:39 - INFO  main_alumno.py insert_alumnos 55 - Crea un registro en la tabla Alumnos
+26-07-2023 11:36:49 - INFO  main_pago.py insert 53 - Crea un registro en la tabla Pagos
+26-07-2023 11:37:05 - INFO  main_pago.py insert 53 - Crea un registro en la tabla Pagos
+26-07-2023 11:38:37 - INFO  main_profesor_clase.py insert 50 - Crea un registro en la tabla Profesores_clases

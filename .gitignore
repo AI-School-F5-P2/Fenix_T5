@@ -56,3 +56,6 @@ env_vic
 
 #INFO MIGUEL
 fenix_venv
+
+#externalización datos sensibles
+.env
