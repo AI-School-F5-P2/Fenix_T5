@@ -47,6 +47,8 @@ def insert(self, data):
                 """, {"alumno_id": alumno_id, "clase_id": clase_id})
             self.conn.commit()
 
+        
+        # Obtener el precio de la clase de la tabla Clases
         with self.conn.cursor() as cur:
             cur.execute(
                 """
@@ -54,6 +56,8 @@ def insert(self, data):
                 """, {"clase_id": clase_id})
             precio_clase = cur.fetchone()[0]
 
+        
+        # Obtener el tipo de pack de la clase de la tabla Clases
         with self.conn.cursor() as cur:
             cur.execute(
                 """
@@ -61,6 +65,11 @@ def insert(self, data):
                 """, {"clase_id": clase_id})
             tipo_pack = cur.fetchone()[0]
 
+
+        
+        # Consulta para obtener el número de clases inscritas para el alumno por pack
+        # clases_por_pack es una lista de tuplas que contiene los valores de alumno_id, pack y clases_inscritas
+        # [(alumno_id, pack,clases_inscritas)]
         with self.conn.cursor() as cur:
             cur.execute(
                 """
@@ -73,6 +82,8 @@ def insert(self, data):
             )
             clases_por_pack = cur.fetchall()
 
+        
+        # Obtener valor de familiar de la tabla Alumnos
         with self.conn.cursor() as cur:
             cur.execute(
                 """
@@ -80,6 +91,8 @@ def insert(self, data):
                 """, {"alumno_id": alumno_id})
             es_familiar = cur.fetchone()[0]
 
+        
+        # Se calculan los descuentos
         if tipo_pack in [pack for _, pack, _ in clases_por_pack] and tipo_pack != 0:
             clases_inscritas_pack = clases_inscritas_pack = next(clases for _, pack, clases in clases_por_pack if pack == tipo_pack)
             clases_inscritas_pack += 1
@@ -104,16 +117,24 @@ def insert(self, data):
                 descuento = (1 - 0.1)
                 es_familiar = False
 
+
+        # Calcular el importe pagado con el descuento aplicado
         importe_pagado_descuento = precio_clase * descuento
+
+        
+        # Actualizar el diccionario de datos con el importe pagado calculado
         data["importe_pagado"] = importe_pagado_descuento
 
+        
+        # Insertar el registro en la tabla "Pagos" con el importe pagado calculado
         with self.conn.cursor() as cur:
             cur.execute("""
                 INSERT INTO "Pagos"(importe_pagado, alumno_id, clase_id, fecha_pago) 
                 VALUES (%(importe_pagado)s, %(alumno_id)s, %(clase_id)s, %(fecha_pago)s)
             """, data)
             self.conn.commit()
-
+      
+        # Actualizar a "false" el campo familiar en la tabla Alumnos.
         if not es_familiar:
             with self.conn.cursor() as cur:
                 cur.execute("""
