@@ -122,7 +122,7 @@ Para abordar este problema, nuestro equipo de desarrollo ha sido contratado por 
 
   <h2>📋 Configuración de la Base de Datos</h2>
   <li>Asegúrate de tener PostgreSQL instalado en tu máquina y funcionando correctamente.</li>
-  <li>Abre pgAdmin y crea una nueva base de datos para tu proyecto, como en esta <a href="./UML_Relaciones.jpg">visualización</a> de un diagrama con tablas   relacionadas.</li>
+  <li>Abre pgAdmin y crea una nueva base de datos para tu proyecto, como en esta <a href="./UML_Relaciones.png">visualización</a> de un diagrama con tablas   relacionadas.</li>
   <li>Ejecuta los scripts SQL proporcionados para crear las tablas y relaciones necesarias.</li>
 
   <h2>⚙️ Ejecutar el Servidor</h2>
